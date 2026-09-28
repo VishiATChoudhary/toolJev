@@ -34,7 +34,20 @@ def sample(cases, limit: int | None, seed: int = 0):
     return rng.sample(cases, min(limit, len(cases)))
 
 
-async def main(datasets: list[str], routers: list[str], limit: int | None, concurrency: int = 1) -> None:
+class OutOfCredits(RuntimeError):
+    pass
+
+
+def _done(out: Path) -> set[tuple[str, int]]:
+    """(query, n_tools) already written without error, so a resumed run skips them."""
+    if not out.exists():
+        return set()
+    rows = [json.loads(line) for line in out.open()]
+    return {(r["query"], r["n_tools"]) for r in rows if not r.get("error")}
+
+
+async def main(datasets: list[str], routers: list[str], limit: int | None, concurrency: int = 1,
+               resume: bool = False) -> None:
     RESULTS.mkdir(exist_ok=True)
     loaded = {d: sample(LOADERS[d](), limit) for d in datasets}
     for rname in routers:
@@ -51,13 +64,23 @@ async def main(datasets: list[str], routers: list[str], limit: int | None, concu
                             return await router.route(c.query, c.catalog)
                         except Exception as e:  # remote backends: timeouts under load
                             err = str(e)[:200]
+                            if " 402 " in err:  # out of credits: stop, don't burn retries
+                                raise OutOfCredits(err) from e
                             await asyncio.sleep(5 * (attempt + 1))
                     return {"ranked": [], "in_catalog": 0.0, "ms": 0.0, "error": err}
 
             # Results come back in case order. Per-case ms starts after the semaphore, so it
             # excludes queueing but not contention between in-flight requests.
+            done = _done(out) if resume else set()
+            if done:  # keep the good rows, drop failed ones, run the rest
+                good = [line for line in out.open() if not json.loads(line).get("error")]
+                out.write_text("".join(good))
+            todo = [c for c in cases if (c.query, len(c.catalog.tools())) not in done]
+            if resume:
+                print(f"{rname} {d}: {len(cases) - len(todo)} done, {len(todo)} to run", flush=True)
+            cases = todo
             outs = await asyncio.gather(*(routed(c) for c in cases)) if concurrency > 1 else None
-            with out.open("w") as f:
+            with out.open("a" if resume else "w") as f:
                 for i, c in enumerate(cases):
                     r = outs[i] if outs is not None else await routed(c)
                     if "error" in r:
@@ -72,6 +95,7 @@ async def main(datasets: list[str], routers: list[str], limit: int | None, concu
                         "top_category": {py_name(k): v for k, v in c.meta.get("category_of", {}).items()}.get(
                             r["ranked"][0][0].split(".")[0] if r["ranked"] else "", None),
                     }) + "\n")
+                    f.flush()
                     if (i + 1) % 50 == 0:
                         print(f"  {rname} {d} {i + 1}/{len(cases)}", file=sys.stderr, flush=True)
             print(f"{rname:16s} {d:14s} {len(cases):5d} cases {time.perf_counter() - t0:7.1f}s -> {out.name}",
@@ -84,5 +108,9 @@ if __name__ == "__main__":
     p.add_argument("--routers", nargs="+", default=["bm25", "dense-minilm", "tooljev-encoder"])
     p.add_argument("--limit", type=int, default=None, help="max positives (and negatives) per dataset")
     p.add_argument("--concurrency", type=int, default=1, help="parallel cases (remote backends)")
+    p.add_argument("--resume", action="store_true", help="append to existing results, skipping done cases")
     a = p.parse_args()
-    asyncio.run(main(a.datasets, a.routers, a.limit, a.concurrency))
+    try:
+        asyncio.run(main(a.datasets, a.routers, a.limit, a.concurrency, a.resume))
+    except OutOfCredits as e:
+        sys.exit(f"stopped, out of credits: {e}\nrerun with --resume once credits are added")

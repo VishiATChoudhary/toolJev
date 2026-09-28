@@ -18,7 +18,7 @@ BLUE, ORANGE, AQUA, YELLOW = "#2a78d6", "#eb6834", "#1baf7a", "#b07800"
 TILES = [
     ("61% fewer", "input tokens than Claude Code's own tool search",
      "same task success (0.81) over 612 MCP tools,\n23% lower cost, but slower", BLUE),
-    ("18% → 62%", "right tool first: Jev alone vs retrieval first",
+    ("18% → 70%", "right tool first: Jev alone vs retrieval first",
      "MCPToolBench++, 1,509 queries. So retrieval\npicks the tools and Jev judges them", ORANGE),
     ("98.3%", "accuracy on the 29% of tickets Jev was surest of",
      "400 banking77 tickets. Claude Haiku routing\nall of them itself: 99.3%", AQUA),

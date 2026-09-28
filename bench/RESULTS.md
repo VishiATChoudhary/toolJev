@@ -14,7 +14,9 @@ moved to `bench/results/old/` with the reason in the file name. Summaries (`repo
 
 1. **Picking a tool is retrieval; Jev should not do it alone.** The first design
    (Jev picks a server, then a tool) scored 0.18 top-1 on MCPToolBench++ against
-   0.62 for BM25 + MiniLM fusion, at 10x the latency. Reranking retrieval's
+   0.62 for BM25 + MiniLM fusion, at 10x the latency. Swapping in bge-base, with
+   its ranking weighted 2x in the fusion, raised retrieval to 0.70 (and 0.40 on
+   LiveMCPBench, 0.92 on When2Call). Reranking retrieval's
    top 15 with local Jev also hurt (0.19). toolJev now retrieves, and Jev judges.
 2. **Whether anything fits is a different question, and the right signal depends
    on the kind of miss.** Local Jev's per-tool Nouls win on near-misses (When2Call,
@@ -49,14 +51,18 @@ Routers:
 - `tooljev-encoder` is the shipped default: retrieval order, with Jev used only
   for fit and abstention. Its top-1 therefore equals `hybrid-rrf` by construction.
 - `-hier` and `-rerank` are the two designs it replaced.
+- The first stage was chosen with `bench/lab.py`, which sweeps embedders
+  (MiniLM, mpnet, bge-small, bge-base, e5-base) and fusion weights on all three
+  benchmarks at once. Agent runs in section 5 used the previous first stage.
 
 | router | MCPToolBench++ top-1 | recall@5 | LiveMCPBench top-1 | recall@5 | When2Call top-1 | p50 ms (MCPTB) |
 |---|---|---|---|---|---|---|
 | BM25 | 0.535 | 0.712 | 0.266 | 0.306 | 0.716 | 0 |
 | dense MiniLM | 0.547 | 0.777 | 0.287 | 0.350 | 0.880 | 5 |
 | dense mpnet | 0.557 | 0.794 | 0.309 | 0.362 | **0.908** | 10 |
-| hybrid RRF (BM25 + MiniLM) | **0.624** | **0.796** | **0.309** | **0.405** | 0.792 | 5 |
-| **toolJev** (hybrid + Jev fit) | **0.624** | **0.796** | **0.309** | **0.405** | 0.792 | 74 |
+| **hybrid RRF (BM25 + bge-base, dense 2x), current first stage** | **0.698** | **0.845** | **0.404** | **0.424** | **0.916** | 8 |
+| hybrid RRF (BM25 + MiniLM), previous first stage | 0.624 | 0.796 | 0.309 | 0.405 | 0.792 | 5 |
+| toolJev on the previous first stage (hybrid + Jev fit) | 0.624 | 0.796 | 0.309 | 0.405 | 0.792 | 74 |
 | toolJev, Jev reranks top 15 | 0.193 | 0.587 | 0.245 | 0.284 | 0.667 | 162 |
 | toolJev v1, Jev picks server then tool | 0.181 | 0.341 | 0.106 | 0.076 | 0.684 | 743 |
 

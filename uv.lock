@@ -2082,25 +2082,13 @@ wheels = [
 [[package]]
 name = "nanojev"
 version = "0.1.0"
-source = { editable = "../nanojev" }
+source = { git = "https://github.com/VishiATChoudhary/nanojev#f156f5d1756ad7ae4d5eb437879e4738f70f144b" }
 dependencies = [
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "torch" },
     { name = "transformers" },
 ]
-
-[package.metadata]
-requires-dist = [
-    { name = "datasets", marker = "extra == 'bench'", specifier = ">=2.18" },
-    { name = "numpy", specifier = ">=1.24" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0" },
-    { name = "scipy", marker = "extra == 'bench'", specifier = ">=1.11" },
-    { name = "sentencepiece", marker = "extra == 'bench'", specifier = ">=0.2" },
-    { name = "torch", specifier = ">=2.2" },
-    { name = "transformers", specifier = ">=4.40" },
-]
-provides-extras = ["bench", "dev"]
 
 [[package]]
 name = "narwhals"
@@ -4020,7 +4008,7 @@ requires-dist = [
     { name = "datasets", marker = "extra == 'bench'" },
     { name = "fastmcp", specifier = ">=4.0" },
     { name = "matplotlib", marker = "extra == 'bench'" },
-    { name = "nanojev", marker = "extra == 'local'", editable = "../nanojev" },
+    { name = "nanojev", marker = "extra == 'local'", git = "https://github.com/VishiATChoudhary/nanojev" },
     { name = "pandas", marker = "extra == 'bench'" },
     { name = "pyarrow", marker = "extra == 'bench'" },
     { name = "pydantic-monty", specifier = ">=1.0" },

@@ -122,12 +122,14 @@ class DenseRouter:
 
 
 class HybridRouter:
-    """Retrieval alone: BM25 + MiniLM fused by reciprocal rank, what toolJev's first stage returns."""
+    """Retrieval alone, BM25 + dense fused by reciprocal rank: toolJev's first stage.
 
-    name = "hybrid-rrf"
+    "hybrid-rrf" is the original first stage (MiniLM, equal weights); "hybrid-bge" is the current one.
+    """
 
-    def __init__(self):
-        self.retriever = Retriever()
+    def __init__(self, name: str, model: str, dense_weight: float):
+        self.name = name
+        self.retriever = Retriever(model, dense_weight)
 
     async def route(self, query: str, catalog: StaticCatalog) -> dict[str, Any]:
         self.retriever.index(catalog.tools(), {n: s.description for n, s in catalog.servers.items()})
@@ -143,7 +145,9 @@ def make_router(name: str):
         parts = name.split("-")
         return JevRouter(parts[1], parts[2] if len(parts) > 2 else "")
     if name == "hybrid-rrf":
-        return HybridRouter()
+        return HybridRouter(name, "sentence-transformers/all-MiniLM-L6-v2", 1.0)
+    if name == "hybrid-bge":
+        return HybridRouter(name, "BAAI/bge-base-en-v1.5", 2.0)
     if name == "bm25":
         return BM25Router()
     if name == "dense-minilm":

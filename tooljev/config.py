@@ -32,7 +32,7 @@ class SearchConfig:
     # pilot). Hosted Jev has not been measured. When off, retrieval order stands
     # and Jev answers only "does any of these fit?".
     rerank: bool = False
-    dense_model: str = "sentence-transformers/all-MiniLM-L6-v2"  # "" for BM25 only
+    dense_model: str = "BAAI/bge-base-en-v1.5"  # "" for BM25 only
     server_mass: float = 0.9  # keep servers until this much probability is covered
     max_servers: int = 3
     tool_mass: float = 0.9

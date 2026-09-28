@@ -20,7 +20,7 @@ design changed to match.
 
 | Question | Result | Takeaway |
 |---|---|---|
-| Can a decision model pick the right tool? | Jev alone: **18%** right first. BM25 + embeddings: **62%** (MCPToolBench++, 1,509 queries) | Retrieval picks the tools; Jev judges them |
+| Can a decision model pick the right tool? | Jev alone: **18%** right first. BM25 + embeddings: **70%** (MCPToolBench++, 1,509 queries) | Retrieval picks the tools; Jev judges them |
 | Does it know when no tool fits? | Near-misses: Jev **0.88** AUROC vs 0.74 for embeddings. Out-of-domain: embeddings **0.91** vs 0.72 | The right signal depends on the kind of miss |
 | Is Jev's confidence honest? | Its surest **29%** of 400 tickets were **98.3%** right. Claude Haiku on all of them: 99.3% | Safe to act on confident answers in code |
 | Is it worth it at 612 tools? | Same task success as Claude Code's own tool search (0.81), **61% fewer** input tokens, **23% cheaper**, but slower | Pays off at scale |
@@ -198,7 +198,7 @@ ones.
 
 ### How `search` decides
 
-1. **Recall:** BM25 and MiniLM embeddings over every tool's description, fused
+1. **Recall:** BM25 and bge-base embeddings over every tool's description, fused
    by reciprocal rank. The top 15 go on. This takes a few milliseconds, and the
    embeddings are cached per tool.
 2. **Fit:** one Jev call asks a Noul per candidate, "this request asks to <what

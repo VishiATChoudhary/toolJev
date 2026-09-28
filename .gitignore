@@ -9,3 +9,4 @@ bench/results/**/*.jsonl
 bench/results/*.log
 bench/results/old/
 bench/results/hosted_pilot/
+bench/results/lab_cache/

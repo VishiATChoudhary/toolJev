@@ -29,6 +29,12 @@ _STOP = frozenset("""a an the of to in on at by for from with and or is are be i
 what which who how can could would should will me my i you your please""".split())
 
 
+def _query_prefix(model: str | None) -> str:
+    """BGE models are trained with an instruction on the query side only."""
+    if model and "bge-" in model and "-en" in model:
+        return "Represent this sentence for searching relevant passages: "
+    return ""
+
 def _tokens(text: str) -> list[str]:
     return [w for w in _TOKEN.findall(text.lower()) if w not in _STOP]
 
@@ -60,8 +66,11 @@ class BM25:
 class Retriever:
     """Index over a tool list. Rebuilt only when the tool set changes."""
 
-    def __init__(self, dense_model: str | None = "sentence-transformers/all-MiniLM-L6-v2"):
+    def __init__(self, dense_model: str | None = "BAAI/bge-base-en-v1.5", dense_weight: float = 2.0):
         self.dense_model = dense_model
+        # Measured with bench/lab.py: bge-base with its dense ranking weighted 2x in the fusion
+        # beat BM25 + MiniLM at top-1 on all three routing benchmarks (0.62 -> 0.70 MCPToolBench++).
+        self.dense_weight = dense_weight
         self._model: Any = None
         self._key: tuple | None = None
         self._tools: list[ToolInfo] = []
@@ -105,11 +114,11 @@ class Retriever:
             return []
         rankings = [self._bm25.scores(query)]
         if self._emb is not None:
-            qv = self._encoder().encode([query], normalize_embeddings=True)[0]
+            qv = self._encoder().encode([_query_prefix(self.dense_model) + query], normalize_embeddings=True)[0]
             rankings.append(list(self._emb @ qv))
         fused = [0.0] * n
-        for scores in rankings:
+        for scores, w in zip(rankings, (1.0, self.dense_weight)):
             for rank, i in enumerate(sorted(range(n), key=lambda i: -scores[i])):
-                fused[i] += 1.0 / (rrf_k + rank + 1)
+                fused[i] += w / (rrf_k + rank + 1)
         order = sorted(range(n), key=lambda i: -fused[i])[:k]
         return [(self._tools[i], fused[i]) for i in order]

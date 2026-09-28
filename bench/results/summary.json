@@ -76,6 +76,16 @@
         "shortlist_hit": 0.5699138502319416,
         "shortlist_size": 2.809145129224652,
         "top1@50%cov": 0.656498673740053
+      },
+      "hybrid-bge": {
+        "n": 1509,
+        "top1": 0.6984758117958914,
+        "recall@5": 0.8449304174950298,
+        "server@1": 0.731610337972167,
+        "p50_ms": 8.0,
+        "p95_ms": 10.04,
+        "category@1": 0.9271040424121935,
+        "top1@50%cov": 0.9734748010610079
       }
     },
     "livemcpbench": {
@@ -147,6 +157,15 @@
         "shortlist_hit": 0.4574468085106383,
         "shortlist_size": 3.2127659574468086,
         "top1@50%cov": 0.46808510638297873
+      },
+      "hybrid-bge": {
+        "n": 94,
+        "top1": 0.40425531914893614,
+        "recall@5": 0.42439209726443766,
+        "server@1": 0.6595744680851063,
+        "p50_ms": 9.455,
+        "p95_ms": 14.58,
+        "top1@50%cov": 0.5106382978723404
       }
     },
     "when2call+": {
@@ -218,6 +237,15 @@
         "shortlist_hit": 0.948,
         "shortlist_size": 1.804,
         "top1@50%cov": 0.944
+      },
+      "hybrid-bge": {
+        "n": 250,
+        "top1": 0.916,
+        "recall@5": 1.0,
+        "server@1": 0.916,
+        "p50_ms": 8.16,
+        "p95_ms": 9.28,
+        "top1@50%cov": 1.0
       }
     }
   },
@@ -229,7 +257,8 @@
       "hybrid-rrf": 0.7687210072895958,
       "tooljev-encoder-hier": 0.8139893969516236,
       "tooljev-encoder-rerank": 0.7123777777777778,
-      "tooljev-encoder": 0.7212038877844047
+      "tooljev-encoder": 0.7212038877844047,
+      "hybrid-bge": 0.8033244974596864
     },
     "LiveMCPBench (leave-server-out)": {
       "bm25": 0.6037799909461294,
@@ -238,7 +267,8 @@
       "hybrid-rrf": 0.6371095518334088,
       "tooljev-encoder-hier": 0.5527953825260299,
       "tooljev-encoder-rerank": 0.5919533725667723,
-      "tooljev-encoder": 0.5919533725667723
+      "tooljev-encoder": 0.5919533725667723,
+      "hybrid-bge": 0.6226233589859665
     },
     "When2Call": {
       "bm25": 0.627944,
@@ -247,7 +277,8 @@
       "hybrid-rrf": 0.534368,
       "tooljev-encoder-hier": 0.868768,
       "tooljev-encoder-rerank": 0.9012888888888889,
-      "tooljev-encoder": 0.883528
+      "tooljev-encoder": 0.883528,
+      "hybrid-bge": 0.531328
     }
   },
   "transfer": {
@@ -330,6 +361,13 @@
       "livemcpbench keep": 0.5531914893617021,
       "livemcpbench-lso abstain": 0.5851063829787234,
       "bfcl-irrelevance abstain": 0.8583333333333334
+    },
+    "hybrid-bge @ fit on When2Call @90% TPR": {
+      "threshold": 0.04891591750396616,
+      "mcptoolbench keep": 0.7011265738899933,
+      "mcptoolbench-lso abstain": 0.8733333333333333,
+      "livemcpbench keep": 0.32978723404255317,
+      "livemcpbench-lso abstain": 0.7978723404255319
     }
   }
 }
