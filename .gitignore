@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+bench/data/
+bench/results/*.jsonl
+bench/results/**/*.jsonl
+bench/results/*.log
+bench/results/old/
+bench/results/hosted_pilot/

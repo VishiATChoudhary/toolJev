@@ -1,0 +1,49 @@
+# toolJev config. Every key below is optional except [servers.*]; values shown are defaults.
+
+# Where per-call JSONL traces go. Set to "" to disable.
+trace_dir = "~/.tooljev/traces"
+catalog_ttl_secs = 300
+
+[decider]
+# "hosted" = TypeSafe Jev (needs TYPESAFE_API_KEY), "nanojev" = local model, no key.
+backend = "nanojev"
+kind = "encoder"          # nanojev only: "encoder" (NLI, faster) or "decoder" (small LM)
+# dtype = "float16"       # nanojev only: ~2x faster on Apple MPS / CUDA
+# model = "jev-latest"    # hosted only
+
+[search]
+server_mass = 0.9
+max_servers = 3
+tool_mass = 0.9
+max_tools = 5
+abstain_below = 0.5
+
+[sandbox]
+timeout_secs = 120
+cpu_secs = 20
+max_memory_mb = 256
+max_calls = 2000
+max_map_items = 5000
+max_sessions = 8
+max_stdout_chars = 4000
+max_concurrency = 16
+
+# One table per upstream MCP server. Anything else in the table is passed to
+# fastmcp.Client: command/args/env/cwd for stdio, url/headers for HTTP.
+# Stdio servers run from this file's directory unless cwd is set, and
+# command = "python" means the interpreter running toolJev.
+[servers.tickets]
+description = "Customer support tickets: list, assign to a team, page on-call."
+command = "python"
+args = ["upstreams.py", "tickets"]
+
+[servers.weather]
+description = "Weather forecasts and air quality for cities."
+command = "python"
+args = ["upstreams.py", "weather"]
+
+[servers.calendar]
+description = "Calendar events: list and create meetings."
+command = "python"
+args = ["upstreams.py", "calendar"]
+# allow = ["list_events"]   # expose only these tools

@@ -1,0 +1,335 @@
+{
+  "routing": {
+    "mcptoolbench": {
+      "bm25": {
+        "n": 1509,
+        "top1": 0.5347912524850894,
+        "recall@5": 0.7123923127899271,
+        "server@1": 0.5977468522200132,
+        "p50_ms": 0.09,
+        "p95_ms": 0.12,
+        "category@1": 0.6951623591782637,
+        "top1@50%cov": 0.8315649867374005
+      },
+      "dense-minilm": {
+        "n": 1509,
+        "top1": 0.5473823724320742,
+        "recall@5": 0.776673293571902,
+        "server@1": 0.6819085487077535,
+        "p50_ms": 5.35,
+        "p95_ms": 10.36,
+        "category@1": 0.8946322067594433,
+        "top1@50%cov": 0.7068965517241379
+      },
+      "dense-mpnet": {
+        "n": 1509,
+        "top1": 0.5566600397614314,
+        "recall@5": 0.7939032471835653,
+        "server@1": 0.6520874751491054,
+        "p50_ms": 9.72,
+        "p95_ms": 16.22,
+        "category@1": 0.8893306825712393,
+        "top1@50%cov": 0.7029177718832891
+      },
+      "hybrid-rrf": {
+        "n": 1509,
+        "top1": 0.6242544731610338,
+        "recall@5": 0.7958913187541418,
+        "server@1": 0.7017892644135189,
+        "p50_ms": 5.28,
+        "p95_ms": 9.35,
+        "category@1": 0.8482438701126573,
+        "top1@50%cov": 0.8328912466843501
+      },
+      "tooljev-encoder-hier": {
+        "n": 1509,
+        "top1": 0.18091451292246521,
+        "recall@5": 0.3412856196156395,
+        "server@1": 0.3074884029158383,
+        "p50_ms": 743.06,
+        "p95_ms": 1456.56,
+        "category@1": 0.56129887342611,
+        "shortlist_hit": 0.33465871438038436,
+        "shortlist_size": 4.740225314777999,
+        "top1@50%cov": 0.2917771883289125
+      },
+      "tooljev-encoder-rerank": {
+        "n": 150,
+        "top1": 0.19333333333333333,
+        "recall@5": 0.5866666666666667,
+        "server@1": 0.44666666666666666,
+        "p50_ms": 162.485,
+        "p95_ms": 245.76,
+        "category@1": 0.6266666666666667,
+        "shortlist_hit": 0.5666666666666667,
+        "shortlist_size": 4.773333333333333,
+        "top1@50%cov": 0.22666666666666666
+      },
+      "tooljev-encoder": {
+        "n": 1509,
+        "top1": 0.6242544731610338,
+        "recall@5": 0.7958913187541418,
+        "server@1": 0.7017892644135189,
+        "p50_ms": 73.61,
+        "p95_ms": 97.34,
+        "category@1": 0.8482438701126573,
+        "shortlist_hit": 0.5699138502319416,
+        "shortlist_size": 2.809145129224652,
+        "top1@50%cov": 0.656498673740053
+      }
+    },
+    "livemcpbench": {
+      "bm25": {
+        "n": 94,
+        "top1": 0.26595744680851063,
+        "recall@5": 0.30559777102330293,
+        "server@1": 0.4787234042553192,
+        "p50_ms": 0.855,
+        "p95_ms": 1.7,
+        "top1@50%cov": 0.3829787234042553
+      },
+      "dense-minilm": {
+        "n": 94,
+        "top1": 0.2872340425531915,
+        "recall@5": 0.3496707193515704,
+        "server@1": 0.5319148936170213,
+        "p50_ms": 3.835,
+        "p95_ms": 9.12,
+        "top1@50%cov": 0.46808510638297873
+      },
+      "dense-mpnet": {
+        "n": 94,
+        "top1": 0.30851063829787234,
+        "recall@5": 0.3615501519756839,
+        "server@1": 0.5851063829787234,
+        "p50_ms": 11.11,
+        "p95_ms": 19.78,
+        "top1@50%cov": 0.3829787234042553
+      },
+      "hybrid-rrf": {
+        "n": 94,
+        "top1": 0.30851063829787234,
+        "recall@5": 0.4052431610942248,
+        "server@1": 0.5638297872340425,
+        "p50_ms": 5.355,
+        "p95_ms": 14.65,
+        "top1@50%cov": 0.46808510638297873
+      },
+      "tooljev-encoder-hier": {
+        "n": 94,
+        "top1": 0.10638297872340426,
+        "recall@5": 0.07624113475177305,
+        "server@1": 0.14893617021276595,
+        "p50_ms": 4893.639999999999,
+        "p95_ms": 6876.65,
+        "shortlist_hit": 0.1276595744680851,
+        "shortlist_size": 3.425531914893617,
+        "top1@50%cov": 0.10638297872340426
+      },
+      "tooljev-encoder-rerank": {
+        "n": 94,
+        "top1": 0.24468085106382978,
+        "recall@5": 0.2843211752786221,
+        "server@1": 0.44680851063829785,
+        "p50_ms": 168.0,
+        "p95_ms": 389.63,
+        "shortlist_hit": 0.46808510638297873,
+        "shortlist_size": 4.76595744680851,
+        "top1@50%cov": 0.3617021276595745
+      },
+      "tooljev-encoder": {
+        "n": 94,
+        "top1": 0.30851063829787234,
+        "recall@5": 0.4052431610942248,
+        "server@1": 0.5638297872340425,
+        "p50_ms": 93.47,
+        "p95_ms": 180.57,
+        "shortlist_hit": 0.4574468085106383,
+        "shortlist_size": 3.2127659574468086,
+        "top1@50%cov": 0.46808510638297873
+      }
+    },
+    "when2call+": {
+      "bm25": {
+        "n": 250,
+        "top1": 0.716,
+        "recall@5": 1.0,
+        "server@1": 0.716,
+        "p50_ms": 0.03,
+        "p95_ms": 0.06,
+        "top1@50%cov": 0.752
+      },
+      "dense-minilm": {
+        "n": 250,
+        "top1": 0.88,
+        "recall@5": 1.0,
+        "server@1": 0.88,
+        "p50_ms": 3.45,
+        "p95_ms": 5.2,
+        "top1@50%cov": 0.92
+      },
+      "dense-mpnet": {
+        "n": 250,
+        "top1": 0.908,
+        "recall@5": 1.0,
+        "server@1": 0.908,
+        "p50_ms": 11.43,
+        "p95_ms": 21.72,
+        "top1@50%cov": 0.928
+      },
+      "hybrid-rrf": {
+        "n": 250,
+        "top1": 0.792,
+        "recall@5": 1.0,
+        "server@1": 0.792,
+        "p50_ms": 4.195,
+        "p95_ms": 8.98,
+        "top1@50%cov": 1.0
+      },
+      "tooljev-encoder-hier": {
+        "n": 250,
+        "top1": 0.684,
+        "recall@5": 0.976,
+        "server@1": 0.684,
+        "p50_ms": 54.79,
+        "p95_ms": 171.57,
+        "shortlist_hit": 0.948,
+        "shortlist_size": 1.796,
+        "top1@50%cov": 0.888
+      },
+      "tooljev-encoder-rerank": {
+        "n": 150,
+        "top1": 0.6666666666666666,
+        "recall@5": 1.0,
+        "server@1": 0.6666666666666666,
+        "p50_ms": 40.22,
+        "p95_ms": 113.85,
+        "shortlist_hit": 0.98,
+        "shortlist_size": 2.1933333333333334,
+        "top1@50%cov": 0.8933333333333333
+      },
+      "tooljev-encoder": {
+        "n": 250,
+        "top1": 0.792,
+        "recall@5": 1.0,
+        "server@1": 0.792,
+        "p50_ms": 28.035,
+        "p95_ms": 77.0,
+        "shortlist_hit": 0.948,
+        "shortlist_size": 1.804,
+        "top1@50%cov": 0.944
+      }
+    }
+  },
+  "abstention": {
+    "MCPToolBench++ (leave-category-out)": {
+      "bm25": 0.7509332891539651,
+      "dense-minilm": 0.9126629114203667,
+      "dense-mpnet": 0.915293792798763,
+      "hybrid-rrf": 0.7687210072895958,
+      "tooljev-encoder-hier": 0.8139893969516236,
+      "tooljev-encoder-rerank": 0.7123777777777778,
+      "tooljev-encoder": 0.7212038877844047
+    },
+    "LiveMCPBench (leave-server-out)": {
+      "bm25": 0.6037799909461294,
+      "dense-minilm": 0.6846989588048891,
+      "dense-mpnet": 0.6627999094612947,
+      "hybrid-rrf": 0.6371095518334088,
+      "tooljev-encoder-hier": 0.5527953825260299,
+      "tooljev-encoder-rerank": 0.5919533725667723,
+      "tooljev-encoder": 0.5919533725667723
+    },
+    "When2Call": {
+      "bm25": 0.627944,
+      "dense-minilm": 0.7354,
+      "dense-mpnet": 0.725512,
+      "hybrid-rrf": 0.534368,
+      "tooljev-encoder-hier": 0.868768,
+      "tooljev-encoder-rerank": 0.9012888888888889,
+      "tooljev-encoder": 0.883528
+    }
+  },
+  "transfer": {
+    "bm25 @ fit on When2Call @90% TPR": {
+      "threshold": 0.9055623793287478,
+      "mcptoolbench keep": 0.9582504970178927,
+      "mcptoolbench-lso abstain": 0.050000000000000044,
+      "livemcpbench keep": 1.0,
+      "livemcpbench-lso abstain": 0.0,
+      "bfcl-irrelevance abstain": 0.5916666666666667
+    },
+    "dense-minilm @ fit on When2Call @90% TPR": {
+      "threshold": 0.190246120095253,
+      "mcptoolbench keep": 0.950960901259112,
+      "mcptoolbench-lso abstain": 0.5933333333333333,
+      "livemcpbench keep": 0.9787234042553191,
+      "livemcpbench-lso abstain": 0.04255319148936165,
+      "bfcl-irrelevance abstain": 0.4833333333333333
+    },
+    "dense-mpnet @ fit on When2Call @90% TPR": {
+      "threshold": 0.18809552490711212,
+      "mcptoolbench keep": 0.9688535453943009,
+      "mcptoolbench-lso abstain": 0.36,
+      "livemcpbench keep": 0.9787234042553191,
+      "livemcpbench-lso abstain": 0.06382978723404253,
+      "bfcl-irrelevance abstain": 0.4916666666666667
+    },
+    "hybrid-rrf @ fit on When2Call @90% TPR": {
+      "threshold": 0.03252247488101534,
+      "mcptoolbench keep": 0.6699801192842942,
+      "mcptoolbench-lso abstain": 0.8233333333333334,
+      "livemcpbench keep": 0.2765957446808511,
+      "livemcpbench-lso abstain": 0.8297872340425532,
+      "bfcl-irrelevance abstain": 0.0
+    },
+    "tooljev-encoder-hier @ fit on When2Call @90% TPR": {
+      "threshold": 0.032,
+      "mcptoolbench keep": 0.9807819748177601,
+      "mcptoolbench-lso abstain": 0.06333333333333335,
+      "livemcpbench keep": 0.9787234042553191,
+      "livemcpbench-lso abstain": 0.021276595744680882,
+      "bfcl-irrelevance abstain": 0.6541666666666667
+    },
+    "tooljev-encoder-hier @ default 0.5": {
+      "threshold": 0.5,
+      "mcptoolbench keep": 0.8727634194831014,
+      "mcptoolbench-lso abstain": 0.42666666666666664,
+      "livemcpbench keep": 0.3723404255319149,
+      "livemcpbench-lso abstain": 0.7021276595744681,
+      "bfcl-irrelevance abstain": 0.7833333333333333
+    },
+    "tooljev-encoder-rerank @ fit on When2Call @90% TPR": {
+      "threshold": 0.014,
+      "mcptoolbench keep": 0.9866666666666667,
+      "mcptoolbench-lso abstain": 0.10666666666666669,
+      "livemcpbench keep": 0.8936170212765957,
+      "livemcpbench-lso abstain": 0.12765957446808507,
+      "bfcl-irrelevance abstain": 0.6733333333333333
+    },
+    "tooljev-encoder-rerank @ default 0.5": {
+      "threshold": 0.5,
+      "mcptoolbench keep": 0.6533333333333333,
+      "mcptoolbench-lso abstain": 0.62,
+      "livemcpbench keep": 0.5531914893617021,
+      "livemcpbench-lso abstain": 0.5851063829787234,
+      "bfcl-irrelevance abstain": 0.8733333333333333
+    },
+    "tooljev-encoder @ fit on When2Call @90% TPR": {
+      "threshold": 0.009,
+      "mcptoolbench keep": 0.9900596421471173,
+      "mcptoolbench-lso abstain": 0.07666666666666666,
+      "livemcpbench keep": 0.925531914893617,
+      "livemcpbench-lso abstain": 0.08510638297872342,
+      "bfcl-irrelevance abstain": 0.6333333333333333
+    },
+    "tooljev-encoder @ default 0.5": {
+      "threshold": 0.5,
+      "mcptoolbench keep": 0.6640159045725647,
+      "mcptoolbench-lso abstain": 0.61,
+      "livemcpbench keep": 0.5531914893617021,
+      "livemcpbench-lso abstain": 0.5851063829787234,
+      "bfcl-irrelevance abstain": 0.8583333333333334
+    }
+  }
+}

@@ -1,0 +1,2002 @@
+[
+{
+"id": 1000,
+"body": "I am still waiting for my card after 1 week.  Is this ok?",
+"intent": "card_arrival"
+},
+{
+"id": 1001,
+"body": "Where do you guys acquire your exchange rate?",
+"intent": "exchange_rate"
+},
+{
+"id": 1002,
+"body": "What's the refund process?",
+"intent": "request_refund"
+},
+{
+"id": 1003,
+"body": "please tell me why my top-up failed.",
+"intent": "top_up_failed"
+},
+{
+"id": 1004,
+"body": "What steps do I need to take to close my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1005,
+"body": "My card is gone I think it was stolen",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1006,
+"body": "What's the right way to activate my card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1007,
+"body": "My card got stolen!",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1008,
+"body": "What can you do to unblock my pin?",
+"intent": "pin_blocked"
+},
+{
+"id": 1009,
+"body": "I think my top up did not work",
+"intent": "top_up_failed"
+},
+{
+"id": 1010,
+"body": "I would like to cancel a payment. I purchased something several days ago and i still have not received it.",
+"intent": "request_refund"
+},
+{
+"id": 1011,
+"body": "My card was taken from me",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1012,
+"body": "I was charged for a cash withdrawal.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1013,
+"body": "still waiting on my new card",
+"intent": "card_arrival"
+},
+{
+"id": 1014,
+"body": "I'm not sure why my top up request was denied",
+"intent": "top_up_failed"
+},
+{
+"id": 1015,
+"body": "I have a top up that didn't go through.  Why?",
+"intent": "top_up_failed"
+},
+{
+"id": 1016,
+"body": "The service of this company sucks, I need to terminate my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1017,
+"body": "Hi there! I need to cancel an order I recently made and start processing a refund. Can you please help me with this and set up the refund as soon as possible? It's very urgent.",
+"intent": "request_refund"
+},
+{
+"id": 1018,
+"body": "I am chatting about an order from a long while back.  I never got it to this day and am deeply upset by this!  I want all of my money back!  I just can not accept paying for something I never got.",
+"intent": "request_refund"
+},
+{
+"id": 1019,
+"body": "Can you cancel my purchase?",
+"intent": "request_refund"
+},
+{
+"id": 1020,
+"body": "Why would my topup not go through?",
+"intent": "top_up_failed"
+},
+{
+"id": 1021,
+"body": "Please delete my account. I am not happy with the service from your company.",
+"intent": "terminate_account"
+},
+{
+"id": 1022,
+"body": "My friend still hasn't gotten a transaction I made.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1023,
+"body": "I need help activating my new card.",
+"intent": "activate_my_card"
+},
+{
+"id": 1024,
+"body": "How do I get refunded?",
+"intent": "request_refund"
+},
+{
+"id": 1025,
+"body": "Would I be able to get a refund for something I bought?",
+"intent": "request_refund"
+},
+{
+"id": 1026,
+"body": "I am not satisfied with your company and would like to delete my accounts!",
+"intent": "terminate_account"
+},
+{
+"id": 1027,
+"body": "How do I track my card?",
+"intent": "card_arrival"
+},
+{
+"id": 1028,
+"body": "I want a refund for my purchase",
+"intent": "request_refund"
+},
+{
+"id": 1029,
+"body": "The receipient doesn't see my money transfer.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1030,
+"body": "I sent some money and the receiver can't access it.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1031,
+"body": "My card has not arrived yet.",
+"intent": "card_arrival"
+},
+{
+"id": 1032,
+"body": "When I put the wrong pin too much, I got blocked, so can you help me unblock my pin",
+"intent": "pin_blocked"
+},
+{
+"id": 1033,
+"body": "Do you know if there is a tracking number for the new card you sent me?",
+"intent": "card_arrival"
+},
+{
+"id": 1034,
+"body": "I have never been charged a fee for cash withdrawal before. When did that change?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1035,
+"body": "What do I need to do to activate my card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1036,
+"body": "What is the tracking number for the card you sent?",
+"intent": "card_arrival"
+},
+{
+"id": 1037,
+"body": "How many tries do I have to enter my pin before I'm blocked?",
+"intent": "pin_blocked"
+},
+{
+"id": 1038,
+"body": "This company is bad, please delete my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1039,
+"body": "I used the wrong ping too many times and now the account is blocked.  How do I unblock?",
+"intent": "pin_blocked"
+},
+{
+"id": 1040,
+"body": "I really need money from my card today, but my card is getting declined. Please help!!",
+"intent": "top_up_failed"
+},
+{
+"id": 1041,
+"body": "My card got lost.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1042,
+"body": "Why can't I activate my card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1043,
+"body": "What exchange rate do you use?",
+"intent": "exchange_rate"
+},
+{
+"id": 1044,
+"body": "I still don't have my card after 2 weeks.  What should I do?",
+"intent": "card_arrival"
+},
+{
+"id": 1045,
+"body": "My top up didn't work.",
+"intent": "top_up_failed"
+},
+{
+"id": 1046,
+"body": "Why hasn't my card been delivered?",
+"intent": "card_arrival"
+},
+{
+"id": 1047,
+"body": "What is the reason for this fee I got after a simple cash withdrawal?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1048,
+"body": "I'm trying to figure out the current exchange rate.",
+"intent": "exchange_rate"
+},
+{
+"id": 1049,
+"body": "How do I locate my card?",
+"intent": "card_arrival"
+},
+{
+"id": 1050,
+"body": "I need to find out why my transfer didn't get there.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1051,
+"body": "What is the activation process on my new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1052,
+"body": "I am still awaiting the completion of the transaction.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1053,
+"body": "While I was checking out in the grocery store, I realized I needed cash so I requested some.  However, I noticed there was a fee for this transaction.  Why did I get charged a fee?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1054,
+"body": "I'm pretty sure my top up failed. How do I fix this?",
+"intent": "top_up_failed"
+},
+{
+"id": 1055,
+"body": "Why didn`t my topup go through?",
+"intent": "top_up_failed"
+},
+{
+"id": 1056,
+"body": "I would like a refund for something I bought",
+"intent": "request_refund"
+},
+{
+"id": 1057,
+"body": "Please advise what is the exchange rate",
+"intent": "exchange_rate"
+},
+{
+"id": 1058,
+"body": "Help me please!  My card was stolen!",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1059,
+"body": "How can I unlock the pin?",
+"intent": "pin_blocked"
+},
+{
+"id": 1060,
+"body": "I transferred the rent payment for my new place a couple days ago but the landlord says it's not there yet, despite showing up as done on my side. I checked the account number I sent it to and it's definitely correct. Can you please verify if the transaction really went through or not?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1061,
+"body": "How can the recipient see my money transaction?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1062,
+"body": "I don't find your services useful anymore, how do I delete my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1063,
+"body": "Did you start charging for cash withdrawals? I thought it was free so far but noticed suddendly there is a fee. How much do I need to pay?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1064,
+"body": "Please stop my purchase.",
+"intent": "request_refund"
+},
+{
+"id": 1065,
+"body": "The exchange rates are?",
+"intent": "exchange_rate"
+},
+{
+"id": 1066,
+"body": "Where did your guys exchange rates come from?",
+"intent": "exchange_rate"
+},
+{
+"id": 1067,
+"body": "How do I cancel a previous purchase",
+"intent": "request_refund"
+},
+{
+"id": 1068,
+"body": "I want this amount reversed out of my account.",
+"intent": "request_refund"
+},
+{
+"id": 1069,
+"body": "still waiting on that card",
+"intent": "card_arrival"
+},
+{
+"id": 1070,
+"body": "My pin was blocked, how do I make it so I can use it?",
+"intent": "pin_blocked"
+},
+{
+"id": 1071,
+"body": "I ordered a card but it has not arrived. Help please!",
+"intent": "card_arrival"
+},
+{
+"id": 1072,
+"body": "My card is lost! What can I do?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1073,
+"body": "What should I do if I've tried to enter my PIN too often?",
+"intent": "pin_blocked"
+},
+{
+"id": 1074,
+"body": "what are exchange rates based on",
+"intent": "exchange_rate"
+},
+{
+"id": 1075,
+"body": "My top-up failed, WHY?",
+"intent": "top_up_failed"
+},
+{
+"id": 1076,
+"body": "I ordered a card a week ago, and it's still not here. What do I do?",
+"intent": "card_arrival"
+},
+{
+"id": 1077,
+"body": "I transferred some money but the recipient is having trouble withdrawing.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1078,
+"body": "I'm in Spain and my stuff has been stolen. My card was with it and I need a new one shipped and the old one frozen.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1079,
+"body": "Where is the transaction I made to a friend?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1080,
+"body": "Hello I changed my mind and really need a refund on one of things I bought recently. Can you please cancel the transaction and get my money back. Please it's urgent.",
+"intent": "request_refund"
+},
+{
+"id": 1081,
+"body": "I would appreciate it if I could get an item refunded",
+"intent": "request_refund"
+},
+{
+"id": 1082,
+"body": "Help! Someone stole my card!",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1083,
+"body": "I got a fee for an ATM withdrawal.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1084,
+"body": "I'm tired of all the problems I've had. I want to quit this account!",
+"intent": "terminate_account"
+},
+{
+"id": 1085,
+"body": "I topped up but the app did not accept it.",
+"intent": "top_up_failed"
+},
+{
+"id": 1086,
+"body": "I'm still waiting for delivery of my new card, why is it taking so long?",
+"intent": "card_arrival"
+},
+{
+"id": 1087,
+"body": "I entered the wrong pin too many times and now I am blocked.  Help me unblock!",
+"intent": "pin_blocked"
+},
+{
+"id": 1088,
+"body": "Using an ATM caused me to incur an additional fee. Why?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1089,
+"body": "I am sick of this damn company and want to close out my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1090,
+"body": "Can you remove my account please?",
+"intent": "terminate_account"
+},
+{
+"id": 1091,
+"body": "How do I deal with a stolen card?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1092,
+"body": "Can you tell me the foreign exchange rate?",
+"intent": "exchange_rate"
+},
+{
+"id": 1093,
+"body": "I want a refund because my package has been taking too long to arrive. How do I go about doing that?",
+"intent": "request_refund"
+},
+{
+"id": 1094,
+"body": "I would like to close my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1095,
+"body": "This company isn't good, I would like to delete my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1096,
+"body": "I have a new card and I want to activate it",
+"intent": "activate_my_card"
+},
+{
+"id": 1097,
+"body": "From where are you getting your exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1098,
+"body": "How do I get my PIN unlocked?",
+"intent": "pin_blocked"
+},
+{
+"id": 1099,
+"body": "I'm still waiting on my card to be delivered.",
+"intent": "card_arrival"
+},
+{
+"id": 1100,
+"body": "How do I reset my PIN?",
+"intent": "pin_blocked"
+},
+{
+"id": 1101,
+"body": "Do you have a list of exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1102,
+"body": "I need to know your exchange rates.",
+"intent": "exchange_rate"
+},
+{
+"id": 1103,
+"body": "The transfer I did hasn't arrived",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1104,
+"body": "I want to return an item.",
+"intent": "request_refund"
+},
+{
+"id": 1105,
+"body": "I need to do a refund",
+"intent": "request_refund"
+},
+{
+"id": 1106,
+"body": "This company sucks! Can you terminate my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1107,
+"body": "My card still hasn't arrived after 2 weeks. Is it lost?",
+"intent": "card_arrival"
+},
+{
+"id": 1108,
+"body": "How do I activate a new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1109,
+"body": "Can you tell me if my pop-up went through?",
+"intent": "top_up_failed"
+},
+{
+"id": 1110,
+"body": "How do I find the exchange rate?",
+"intent": "exchange_rate"
+},
+{
+"id": 1111,
+"body": "I would like to delete my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1112,
+"body": "I completed an in country transfer a few days ago and was sure to check the account information several times since the transaction was completed, but the funds are still not available. What is the problem?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1113,
+"body": "I lost my card",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1114,
+"body": "Status of the card I ordered.",
+"intent": "card_arrival"
+},
+{
+"id": 1115,
+"body": "I bought this item and was charged the wrong amount can I get a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1116,
+"body": "I cannot find my credit card.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1117,
+"body": "My top-up has failed.",
+"intent": "top_up_failed"
+},
+{
+"id": 1118,
+"body": "Your service is terrible,.  Delete my account,",
+"intent": "terminate_account"
+},
+{
+"id": 1119,
+"body": "Please delete my account, this company is not working for me!",
+"intent": "terminate_account"
+},
+{
+"id": 1120,
+"body": "Is there a limit on how much I can withdraw from my account without being charged?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1121,
+"body": "Why is there a charge on my account for taking out cash?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1122,
+"body": "how to activate card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1123,
+"body": "How do I deal with a blocked PIN?",
+"intent": "pin_blocked"
+},
+{
+"id": 1124,
+"body": "I tried to send someone money but they haven't received it.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1125,
+"body": "Since my pin is blocked, would you help me unblock it?",
+"intent": "pin_blocked"
+},
+{
+"id": 1126,
+"body": "Why did I have to pay a fee when I got cash?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1127,
+"body": "What is the base of the exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1128,
+"body": "I've just moved address from a place in Durham to a place in Walton-On-The-Naze.  I have a new landlord at my new house and they haven't got my payment but I know I sent it on time, can you check they got it please?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1129,
+"body": "My top-up isn't working.",
+"intent": "top_up_failed"
+},
+{
+"id": 1130,
+"body": "I am extremely unhappy with this app and want to get rid of my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1131,
+"body": "I'm starting to think my card is lost because it still hasn't arrived, can you help?",
+"intent": "card_arrival"
+},
+{
+"id": 1132,
+"body": "How did you come up with your exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1133,
+"body": "\nWhere can I get my PIN unblocked?",
+"intent": "pin_blocked"
+},
+{
+"id": 1134,
+"body": "Can you tell me why my top up didn't work?",
+"intent": "top_up_failed"
+},
+{
+"id": 1135,
+"body": "Someone stole my card. I need to report it stolen. I made a police report already, but how do I report it with you?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1136,
+"body": "I would like to delete my account please.",
+"intent": "terminate_account"
+},
+{
+"id": 1137,
+"body": "How can I activate my card>",
+"intent": "activate_my_card"
+},
+{
+"id": 1138,
+"body": "what is the exchange rate?",
+"intent": "exchange_rate"
+},
+{
+"id": 1139,
+"body": "i have not received my card",
+"intent": "card_arrival"
+},
+{
+"id": 1140,
+"body": "Can I have an item refunded?",
+"intent": "request_refund"
+},
+{
+"id": 1141,
+"body": "I need a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1142,
+"body": "Assist me please with card activation.",
+"intent": "activate_my_card"
+},
+{
+"id": 1143,
+"body": "How long does it take for transfers to finish?  I sent funds to my pal, and she says that she has not gotten anything.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1144,
+"body": "Do ATM cash withdrawals carry a charge now? They've been free in the past, but all of a sudden I have to pay to make ATM withdrawals?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1145,
+"body": "i want to track the card you sent",
+"intent": "card_arrival"
+},
+{
+"id": 1146,
+"body": "What do I need to do to activate my new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1147,
+"body": "When will I get my card?",
+"intent": "card_arrival"
+},
+{
+"id": 1148,
+"body": "I can't find my card and think it may have been stolen.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1149,
+"body": "What's the deal? My card was just denied for top up. Why is it not going through?",
+"intent": "top_up_failed"
+},
+{
+"id": 1150,
+"body": "What reason did my top-up fail for?",
+"intent": "top_up_failed"
+},
+{
+"id": 1151,
+"body": "I've notice I was charged for withdrawing cash, can you explain why?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1152,
+"body": "Why did the app deny my top up?",
+"intent": "top_up_failed"
+},
+{
+"id": 1153,
+"body": "It looks like I was charged a withdrawal fee for going to my ATM. Why is that because I haven't been charged previously for doing so?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1154,
+"body": "I need help with a lost card",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1155,
+"body": "Why did my cash get charged a fee that should not be there.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1156,
+"body": "My card hasn't arrived yet.",
+"intent": "card_arrival"
+},
+{
+"id": 1157,
+"body": "What is this charge on my account for a cash withdrawl?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1158,
+"body": "What is the exchange rate like on this app?",
+"intent": "exchange_rate"
+},
+{
+"id": 1159,
+"body": "Where can I view my PIN?",
+"intent": "pin_blocked"
+},
+{
+"id": 1160,
+"body": "I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.",
+"intent": "request_refund"
+},
+{
+"id": 1161,
+"body": "I want to delete my account. I'm unhappy with the service you're providing.",
+"intent": "terminate_account"
+},
+{
+"id": 1162,
+"body": "I lost my wallet today with all my credit cards. Will you please block the card and send a replacement?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1163,
+"body": "I took cash and got charged a fee",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1164,
+"body": "Can I receive a refund for my item?",
+"intent": "request_refund"
+},
+{
+"id": 1165,
+"body": "How do I unblock my pin after entering it wrong too many times?",
+"intent": "pin_blocked"
+},
+{
+"id": 1166,
+"body": "Can you tell me how to close my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1167,
+"body": "I got my new card but I am not sure if it need s activated and how?",
+"intent": "activate_my_card"
+},
+{
+"id": 1168,
+"body": "This company sucks! Can you delete my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1169,
+"body": "Is there a reason why my transaction is taking so long?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1170,
+"body": "Can you help me get rid of my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1171,
+"body": "Is a copy of the police report necessary for completing the report process?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1172,
+"body": "What foreign exchange rate will you use?",
+"intent": "exchange_rate"
+},
+{
+"id": 1173,
+"body": "card is lost, please help",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1174,
+"body": "WHAT CAN I DO AFTER THE CARD MISSING",
+"intent": "activate_my_card"
+},
+{
+"id": 1175,
+"body": "I received my new card, how is it activated?",
+"intent": "activate_my_card"
+},
+{
+"id": 1176,
+"body": "My card has not arrived yet, where is it?",
+"intent": "card_arrival"
+},
+{
+"id": 1177,
+"body": "How much will I get with the exchange rate?",
+"intent": "exchange_rate"
+},
+{
+"id": 1178,
+"body": "I cant find my card, it's gone.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1179,
+"body": "I see some fees for cash withdraw.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1180,
+"body": "What do I do if the bank machine won't accept my PIN attempts anymore?",
+"intent": "pin_blocked"
+},
+{
+"id": 1181,
+"body": "What do you base your exchange rates on?",
+"intent": "exchange_rate"
+},
+{
+"id": 1182,
+"body": "My PIN is blocked, what do I do?",
+"intent": "pin_blocked"
+},
+{
+"id": 1183,
+"body": "I need help with activating my card",
+"intent": "activate_my_card"
+},
+{
+"id": 1184,
+"body": "i want to close an account but im not sure about setting up a new one in the future, what do you recommend",
+"intent": "terminate_account"
+},
+{
+"id": 1185,
+"body": "How long should my new card take to arrive?",
+"intent": "card_arrival"
+},
+{
+"id": 1186,
+"body": "Why are fees charged on cash withdrawals? I went to withdraw some money earlier today after shopping. There's a fee that wasn't there before.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1187,
+"body": "How do your exchange rates work?",
+"intent": "exchange_rate"
+},
+{
+"id": 1188,
+"body": "When I got cash, I'm pretty sure there was a glitch that overcharged me.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1189,
+"body": "Delete this account!",
+"intent": "terminate_account"
+},
+{
+"id": 1190,
+"body": "When will my card be activated?",
+"intent": "activate_my_card"
+},
+{
+"id": 1191,
+"body": "how long do money transfers take?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1192,
+"body": "What exchange rates do you offer?",
+"intent": "exchange_rate"
+},
+{
+"id": 1193,
+"body": "I was charged extra for a withdrawal",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1194,
+"body": "How do I go about activating my new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1195,
+"body": "Is there a way my new card can be renewed?",
+"intent": "activate_my_card"
+},
+{
+"id": 1196,
+"body": "please delete my account, your services are not up to par.",
+"intent": "terminate_account"
+},
+{
+"id": 1197,
+"body": "Someone stole my wallet earlier today, not sure exactly when, probably on Piccadilly circus. Can you check if there were any attempts to use the card and obviously block it?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1198,
+"body": "My entire gym bag, including my wallet, was stolen out of my locker today. Everything in my wallet is gone - how do I block the card to make it can't be used?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1199,
+"body": "My top up was denied in the app.",
+"intent": "top_up_failed"
+},
+{
+"id": 1200,
+"body": "Please terminate my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1201,
+"body": "My bags were stolen. I need a new card but need to cancel the stolen one.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1202,
+"body": "My card is lost! What do I do now?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1203,
+"body": "Are you able to locate my card?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1204,
+"body": "The app denied my top-up",
+"intent": "top_up_failed"
+},
+{
+"id": 1205,
+"body": "What is the process of card activation?",
+"intent": "activate_my_card"
+},
+{
+"id": 1206,
+"body": "I was expecting my new card and am wondering why I haven't received it yet?",
+"intent": "card_arrival"
+},
+{
+"id": 1207,
+"body": "Heyy I tried to top up with my card today but it failed! I just got the couple days before but it has worked last time. What's going on, can you double check please?",
+"intent": "top_up_failed"
+},
+{
+"id": 1208,
+"body": "Is it a good time to exchange?",
+"intent": "exchange_rate"
+},
+{
+"id": 1209,
+"body": "Why did my top up not work?",
+"intent": "top_up_failed"
+},
+{
+"id": 1210,
+"body": "What do I need to do to get a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1211,
+"body": "I attempted to top up but the app denied it.",
+"intent": "top_up_failed"
+},
+{
+"id": 1212,
+"body": "Is there a fee for withdrawing cash?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1213,
+"body": "Why was my account charged for using an ATM?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1214,
+"body": "Why can't I top up?",
+"intent": "top_up_failed"
+},
+{
+"id": 1215,
+"body": "How do I report my card lost or stolen?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1216,
+"body": "This company is terrible! Can you delete my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1217,
+"body": "The app won't let me top up my account",
+"intent": "top_up_failed"
+},
+{
+"id": 1218,
+"body": "I am unhappy with my purchase, how do I cancel the order?",
+"intent": "request_refund"
+},
+{
+"id": 1219,
+"body": "How are exchange rates calculated?",
+"intent": "exchange_rate"
+},
+{
+"id": 1220,
+"body": "I have exceeded the number of times I can try my PIN",
+"intent": "pin_blocked"
+},
+{
+"id": 1221,
+"body": "Can I have a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1222,
+"body": "Where is the transfer I started?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1223,
+"body": "I want to reverse a purchase. Can I cancel it?",
+"intent": "request_refund"
+},
+{
+"id": 1224,
+"body": "How do I report my card stolen?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1225,
+"body": "Im waiting for my transaction to go through.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1226,
+"body": "What is the exchange rate like?",
+"intent": "exchange_rate"
+},
+{
+"id": 1227,
+"body": "Why was I charged a fee for withdrawing cash?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1228,
+"body": "I completed a money transaction but the recipient hasn't received it",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1229,
+"body": "How are you determining your exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1230,
+"body": "How do I activate a card I received?",
+"intent": "activate_my_card"
+},
+{
+"id": 1231,
+"body": "How did my top-up fail?",
+"intent": "top_up_failed"
+},
+{
+"id": 1232,
+"body": "Please delete my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1233,
+"body": "Will I get a curreng foreign exchange rate?",
+"intent": "exchange_rate"
+},
+{
+"id": 1234,
+"body": "Hi, I am calling about a recent transaction that has happened on my account.  I recently went to the ATM, and tried to make a withdrawal on my account.  I just happened to check my transaction slip and noticed a fee for my withdrawal.  How can I resolve this, I didn't know fees were charged for this type of action.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1235,
+"body": "Why is there an extra charge for money that was withdrawn?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1236,
+"body": "The app denied my topped up.",
+"intent": "top_up_failed"
+},
+{
+"id": 1237,
+"body": "I want my account deleted!",
+"intent": "terminate_account"
+},
+{
+"id": 1238,
+"body": "I think something went wrong with my card delivery as I haven't received it yet.",
+"intent": "card_arrival"
+},
+{
+"id": 1239,
+"body": "I believe my credit card was stolen.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1240,
+"body": "I need help because I drunken blocked my card?",
+"intent": "pin_blocked"
+},
+{
+"id": 1241,
+"body": "What currencies is an exchange rate calculated in?",
+"intent": "exchange_rate"
+},
+{
+"id": 1242,
+"body": "Why did I get blocked?",
+"intent": "pin_blocked"
+},
+{
+"id": 1243,
+"body": "I got my new card where do I go to activate it?",
+"intent": "activate_my_card"
+},
+{
+"id": 1244,
+"body": "How come I was charged extra when I withdrew cash?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1245,
+"body": "How can I unblock a blocked pin number for my account?",
+"intent": "pin_blocked"
+},
+{
+"id": 1246,
+"body": "Why is there a fee for withdrawing?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1247,
+"body": "Where do you get your exchange rates from?",
+"intent": "exchange_rate"
+},
+{
+"id": 1248,
+"body": "More fees, this time for withdrawing my own cash. Why are you robbing me?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1249,
+"body": "I would like to get help from someone with activating my card.",
+"intent": "activate_my_card"
+},
+{
+"id": 1250,
+"body": "What is the process for activating my card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1251,
+"body": "What are the steps in order to activate my new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1252,
+"body": "Can you assist me with unblocking my PIN? I put it in wrong too many times.",
+"intent": "pin_blocked"
+},
+{
+"id": 1253,
+"body": "What is my foreign exchange rate?",
+"intent": "exchange_rate"
+},
+{
+"id": 1254,
+"body": "Would like to use my card and need to activate it first.  Can you help me do this?",
+"intent": "activate_my_card"
+},
+{
+"id": 1255,
+"body": "I just got this card & I don't know how to activate it.",
+"intent": "activate_my_card"
+},
+{
+"id": 1256,
+"body": "How do I get rid of my account ASAP?",
+"intent": "terminate_account"
+},
+{
+"id": 1257,
+"body": "Can you unlock my pin? I think I entered the wrong pin too many times.",
+"intent": "pin_blocked"
+},
+{
+"id": 1258,
+"body": "I need to know why my credit card was declined for top up? What is the deal here and why did it not go through?",
+"intent": "top_up_failed"
+},
+{
+"id": 1259,
+"body": "I wasn't charged the correct amount for an item I purchased, how can I fix this?",
+"intent": "request_refund"
+},
+{
+"id": 1260,
+"body": "My funding to my card didn't go through.",
+"intent": "top_up_failed"
+},
+{
+"id": 1261,
+"body": "I'v exhausted all the of times I can try my PIN",
+"intent": "pin_blocked"
+},
+{
+"id": 1262,
+"body": "I bought something but now I would like a refund. How do I do that?",
+"intent": "request_refund"
+},
+{
+"id": 1263,
+"body": "I've been waiting longer than expected for my card.",
+"intent": "card_arrival"
+},
+{
+"id": 1264,
+"body": "I'm having a problem with a money transfer.  I sent some money to a friend a couple of hours ago, and they haven't received it yet.  Why hasn't it gotten to them? How long do transfers need to go through?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1265,
+"body": "Is it normal to have to wait over a week for my new card?",
+"intent": "card_arrival"
+},
+{
+"id": 1266,
+"body": "A fee was charged for my recent withdrawal.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1267,
+"body": "An ATM fee was attached to my recent withdrawal.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1268,
+"body": "Hello- It is urgent I get a refund on this product. The merchant has not been helpful, what can I do now to get this resolved ASAP?",
+"intent": "request_refund"
+},
+{
+"id": 1269,
+"body": "How long will it take to activate my new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1270,
+"body": "How can I unlock my pin from too many tries?",
+"intent": "pin_blocked"
+},
+{
+"id": 1271,
+"body": "What kind of foreign exchange rate will I get when I exchange my money?",
+"intent": "exchange_rate"
+},
+{
+"id": 1272,
+"body": "Can you explain your exchange rate policy to me?",
+"intent": "exchange_rate"
+},
+{
+"id": 1273,
+"body": "I still have not received my new card, I ordered over a week ago.",
+"intent": "card_arrival"
+},
+{
+"id": 1274,
+"body": "I think my card was stolen.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1275,
+"body": "I need to activate my card can you do that now?",
+"intent": "activate_my_card"
+},
+{
+"id": 1276,
+"body": "How can I process a refund for something I purchased?",
+"intent": "request_refund"
+},
+{
+"id": 1277,
+"body": "Can I reactivate my PIN?",
+"intent": "pin_blocked"
+},
+{
+"id": 1278,
+"body": "Why was my top-up unsuccessful?",
+"intent": "top_up_failed"
+},
+{
+"id": 1279,
+"body": "when does the rate get determined",
+"intent": "exchange_rate"
+},
+{
+"id": 1280,
+"body": "why do your exchange rates change",
+"intent": "exchange_rate"
+},
+{
+"id": 1281,
+"body": "My money transfer has not arrived.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1282,
+"body": "I thought cash withdrawals were free? Why have I been charged a fee? Also, how much is this fee?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1283,
+"body": "Will you reinstate my PIN?",
+"intent": "pin_blocked"
+},
+{
+"id": 1284,
+"body": "What are your international exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1285,
+"body": "The person I sent money to hasn't gotten it yet!",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1286,
+"body": "Can you tell me where you get your exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1287,
+"body": "Somebody has stolen my card, I need help please.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1288,
+"body": "Activating my card",
+"intent": "activate_my_card"
+},
+{
+"id": 1289,
+"body": "I tried activating my bill of fare and it didn't workplace",
+"intent": "activate_my_card"
+},
+{
+"id": 1290,
+"body": "I believe my card has been stolen, what can I do about this situation? It's urgent.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1291,
+"body": "Help! I forgot my PIN and have been locked out of using my card.",
+"intent": "pin_blocked"
+},
+{
+"id": 1292,
+"body": "I am still waiting for a transaction to be completed",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1293,
+"body": "Why caused my top up to not work?",
+"intent": "top_up_failed"
+},
+{
+"id": 1294,
+"body": "I just finished sending money, but it's not logging on the recipient side.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1295,
+"body": "I need your help in deleting my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1296,
+"body": "Somehow I am missing my card.  What should I do?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1297,
+"body": "I don't think my top up is working correctly",
+"intent": "top_up_failed"
+},
+{
+"id": 1298,
+"body": "Could you please activate my card",
+"intent": "activate_my_card"
+},
+{
+"id": 1299,
+"body": "My account needs to be deleted.",
+"intent": "terminate_account"
+},
+{
+"id": 1300,
+"body": "What is the tracking number for my card that was mailed?",
+"intent": "card_arrival"
+},
+{
+"id": 1301,
+"body": "How come you charge for cash withdrawals? I withdrew cash after buying groceries today, and there seems to be a new fee",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1302,
+"body": "Tell me how to go about activating my new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1303,
+"body": "How long until my friend receives my transaction?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1304,
+"body": "I made a money transaction but the recipient can't see it",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1305,
+"body": "I attempted to use my card while I was intoxicated, and I failed to input my PIN, and the machine kept my card. How soon can I have it back?",
+"intent": "pin_blocked"
+},
+{
+"id": 1306,
+"body": "I sent my friend some money a few hours ago but she has not received it yet. She really needs it. How long does this take?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1307,
+"body": "Can I unblock my card using the app?",
+"intent": "pin_blocked"
+},
+{
+"id": 1308,
+"body": "I tried to top up. Why was it denied?",
+"intent": "top_up_failed"
+},
+{
+"id": 1309,
+"body": "I have been waiting longer than expected for my bank card, could you provide information on when it will arrive?",
+"intent": "card_arrival"
+},
+{
+"id": 1310,
+"body": "What should I do if my card is missing?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1311,
+"body": "How do I reset my PIN, I can't seem to use my card?",
+"intent": "pin_blocked"
+},
+{
+"id": 1312,
+"body": "I want to close my account",
+"intent": "terminate_account"
+},
+{
+"id": 1313,
+"body": "I just got my card and want to use it, how do I activate my card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1314,
+"body": "What are the most current exchange rates?",
+"intent": "exchange_rate"
+},
+{
+"id": 1315,
+"body": "Please close my account. I am unsatisfied with your service.",
+"intent": "terminate_account"
+},
+{
+"id": 1316,
+"body": "Does the card you sent have a way to track to it?",
+"intent": "card_arrival"
+},
+{
+"id": 1317,
+"body": "Some idiot stole my card.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1318,
+"body": "Get an item refund",
+"intent": "request_refund"
+},
+{
+"id": 1319,
+"body": "Please, activate my card",
+"intent": "activate_my_card"
+},
+{
+"id": 1320,
+"body": "I made a transaction and it is taking a very long time to go through.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1321,
+"body": "I ordered a card and I still haven't received it. It's been two weeks. What can I do?",
+"intent": "card_arrival"
+},
+{
+"id": 1322,
+"body": "I got my new card. How do I activate it?",
+"intent": "activate_my_card"
+},
+{
+"id": 1323,
+"body": "I transferred some money and it didint arrive",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1324,
+"body": "How often do your exchange rates change",
+"intent": "exchange_rate"
+},
+{
+"id": 1325,
+"body": "Why am I being charged when I withdraw cash?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1326,
+"body": "Can you unblock my pin after too many wrong pin attempts?",
+"intent": "pin_blocked"
+},
+{
+"id": 1327,
+"body": "Where is the tracking number for the card you sent me?",
+"intent": "card_arrival"
+},
+{
+"id": 1328,
+"body": "I thought cash withdrawals didn't have a fee",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1329,
+"body": "I am highly unsatisfied with this company and want to delete my account!",
+"intent": "terminate_account"
+},
+{
+"id": 1330,
+"body": "Hello! I recently made a purchase and I'm needing to cancel my order and process a refund as soon as possible.",
+"intent": "request_refund"
+},
+{
+"id": 1331,
+"body": "Hey, I need some help figuring out way my transfer is not complete yet. My Landlord hasn't got the money yet.She should have received it by now.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1332,
+"body": "I would like to activate my card to use now, can you help me?",
+"intent": "activate_my_card"
+},
+{
+"id": 1333,
+"body": "How do I unblock my PIN?",
+"intent": "pin_blocked"
+},
+{
+"id": 1334,
+"body": "I accidentally blocked my PIN. How do I reset it?",
+"intent": "pin_blocked"
+},
+{
+"id": 1335,
+"body": "My PIN is not working and I need assistance.",
+"intent": "pin_blocked"
+},
+{
+"id": 1336,
+"body": "How do I use my new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1337,
+"body": "I wish to close my account. I do not like the service you provide.",
+"intent": "terminate_account"
+},
+{
+"id": 1338,
+"body": "Why did I get charged a fee when I tried to obtain cash?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1339,
+"body": "transaction failed?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1340,
+"body": "How do I delete my account?",
+"intent": "terminate_account"
+},
+{
+"id": 1341,
+"body": "I would like a refund on one of your products that has been sold to me",
+"intent": "request_refund"
+},
+{
+"id": 1342,
+"body": "How do I claim a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1343,
+"body": "When will my funds transfer?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1344,
+"body": "My pins seems to be blocked, can you unblock it please",
+"intent": "pin_blocked"
+},
+{
+"id": 1345,
+"body": "How long does it take for a transfer to get to a recipient?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1346,
+"body": "How long will it take for my transaction to be completed?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1347,
+"body": "I don't like your company. Delete my account.",
+"intent": "terminate_account"
+},
+{
+"id": 1348,
+"body": "I ordered something ages ago online but it's simply not arriving. I've got enough! Give me back my money, I'm not paying these people.",
+"intent": "request_refund"
+},
+{
+"id": 1349,
+"body": "I need to cancel a purchase I made.",
+"intent": "request_refund"
+},
+{
+"id": 1350,
+"body": "can you check why I wasn't able to top up?",
+"intent": "top_up_failed"
+},
+{
+"id": 1351,
+"body": "Was charged an ATM fee despite it being a small withdrawal on the 1st day of the month. I thought I was allowed 200 per month?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1352,
+"body": "How long does a card delivery take?",
+"intent": "card_arrival"
+},
+{
+"id": 1353,
+"body": "How long do transfers need to come through? I sent some money to a friend, she needs it urgently, but seems it's still not there yet after a couple hours.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1354,
+"body": "Why did I get a fee?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1355,
+"body": "Can you delete my account please?",
+"intent": "terminate_account"
+},
+{
+"id": 1356,
+"body": "Is there tracking info available?",
+"intent": "card_arrival"
+},
+{
+"id": 1357,
+"body": "I transferred some money but the receiver can't pick it up for some reason.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1358,
+"body": "Are you able to unblock my pin?",
+"intent": "pin_blocked"
+},
+{
+"id": 1359,
+"body": "My account is blocked, how do I log in now",
+"intent": "pin_blocked"
+},
+{
+"id": 1360,
+"body": "So, I tried topping up my card for the today. Unfortunately, it failed. A couple of days back I used it and it works fine. Can you double check and tell me what's going on?",
+"intent": "top_up_failed"
+},
+{
+"id": 1361,
+"body": "Help!  I can't find my card.",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1362,
+"body": "I ordered my card 2 weeks ago and it still isn't here? What do I do?",
+"intent": "card_arrival"
+},
+{
+"id": 1363,
+"body": "How do I know when my card will arrive?",
+"intent": "card_arrival"
+},
+{
+"id": 1364,
+"body": "My account got charged for taking out cash, why did this happen?",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1365,
+"body": "Help.  I have a stolen card!",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1366,
+"body": "How can I start using my card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1367,
+"body": "How do I apply for a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1368,
+"body": "How do I report a stolen card?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1369,
+"body": "what are exchange rates",
+"intent": "exchange_rate"
+},
+{
+"id": 1370,
+"body": "How do I know if my top up was unsuccessful?",
+"intent": "top_up_failed"
+},
+{
+"id": 1371,
+"body": "Why hasn't my recipient received their money?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1372,
+"body": "I did not get my card yet, is it lost?",
+"intent": "card_arrival"
+},
+{
+"id": 1373,
+"body": "Can you freeze my card it was stolen",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1374,
+"body": "I am not Happy with this product can i get a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1375,
+"body": "Problems with top up",
+"intent": "top_up_failed"
+},
+{
+"id": 1376,
+"body": "I sent money.  They haven't received it.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1377,
+"body": "How can I activate my card so I can start using it?",
+"intent": "activate_my_card"
+},
+{
+"id": 1378,
+"body": "I want to get an item refunded",
+"intent": "request_refund"
+},
+{
+"id": 1379,
+"body": "What are the steps to activating a new card?",
+"intent": "activate_my_card"
+},
+{
+"id": 1380,
+"body": "Where is my new card? I have been waiting a week!",
+"intent": "card_arrival"
+},
+{
+"id": 1381,
+"body": "Can I unblock my pin?",
+"intent": "pin_blocked"
+},
+{
+"id": 1382,
+"body": "I think I lost my card . I dont know how long it has been missing. Can you see if maybe someone else has been using it?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1383,
+"body": "why isnt top up working",
+"intent": "top_up_failed"
+},
+{
+"id": 1384,
+"body": "What should I do if I lost my card?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1385,
+"body": "unhappy with you, how to delete account",
+"intent": "terminate_account"
+},
+{
+"id": 1386,
+"body": "The exchange rate would be?",
+"intent": "exchange_rate"
+},
+{
+"id": 1387,
+"body": "How can I freeze a stolen card?",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1388,
+"body": "My card's frozen, what can I do?",
+"intent": "pin_blocked"
+},
+{
+"id": 1389,
+"body": "Is there a way to know when my card will arrive?",
+"intent": "card_arrival"
+},
+{
+"id": 1390,
+"body": "How can I check to see if my top-up worked?",
+"intent": "top_up_failed"
+},
+{
+"id": 1391,
+"body": "Oh no!  I lost my card!  Help!",
+"intent": "lost_or_stolen_card"
+},
+{
+"id": 1392,
+"body": "I don't want the item, I bought it on accident, can I get a refund?",
+"intent": "request_refund"
+},
+{
+"id": 1393,
+"body": "Please delete my account right now!",
+"intent": "terminate_account"
+},
+{
+"id": 1394,
+"body": "I had a wrong fee charged at this ATM.",
+"intent": "cash_withdrawal_charge"
+},
+{
+"id": 1395,
+"body": "The day before yesterday, I performed a transfer which was within this country. It still hasn't gone through. Can you check on that? The account number is definitely correct, as I've checked and double checked.",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1396,
+"body": "My top up failed.",
+"intent": "top_up_failed"
+},
+{
+"id": 1397,
+"body": "What is the current exchange rate for me?",
+"intent": "exchange_rate"
+},
+{
+"id": 1398,
+"body": "I transferred money but the recipient says it has not arrived. Why would this be?",
+"intent": "transfer_not_received_by_recipient"
+},
+{
+"id": 1399,
+"body": "Why did you charge me for a cash withdrawal?",
+"intent": "cash_withdrawal_charge"
+}
+]
