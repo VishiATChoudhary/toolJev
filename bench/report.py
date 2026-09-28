@@ -86,8 +86,18 @@ def _mean(xs) -> float:
     return sum(map(float, xs)) / len(xs) if xs else float("nan")
 
 
-def main() -> None:
+def match(data, ref: str):
+    """Restrict every router to the cases `ref` ran, so sampled runs compare like for like."""
+    keys = {split: {(r["query"], r["n_tools"]) for r in rows} for split, rows in data[ref].items()}
+    return {router: {split: [r for r in rows if (r["query"], r["n_tools"]) in keys.get(split, set())]
+                     for split, rows in splits.items()}
+            for router, splits in data.items()}
+
+
+def main(ref: str | None = None) -> None:
     data = load()
+    if ref:
+        data = match(data, ref)
     summary: dict = {"routing": {}, "abstention": {}, "transfer": {}}
     for router, splits in data.items():
         for split in ("mcptoolbench", "livemcpbench", "when2call+"):
@@ -116,7 +126,7 @@ def main() -> None:
                         above = _mean([r["in_catalog"] >= th for r in rs])
                         row[f"{split} {kind}"] = above if kind == "keep" else 1 - above
                 summary["transfer"][f"{router} @ {label}"] = row
-    (RESULTS / "summary.json").write_text(json.dumps(summary, indent=2))
+    (RESULTS / (f"summary_matched_{ref}.json" if ref else "summary.json")).write_text(json.dumps(summary, indent=2))
     print(render(summary))
 
 
@@ -159,4 +169,8 @@ def _fmt(col: str, v) -> str:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    p = argparse.ArgumentParser()
+    p.add_argument("--match", default=None, help="score every router only on this router's cases")
+    main(p.parse_args().match)

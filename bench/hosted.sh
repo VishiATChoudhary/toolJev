@@ -18,3 +18,4 @@ done
 uv run python -m bench.gating --backend hosted
 # 3. Tables.
 uv run python -m bench.report > bench/results/report.md
+uv run python -m bench.report --match tooljev-hosted > bench/results/report_matched_hosted.md
