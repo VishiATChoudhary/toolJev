@@ -116,3 +116,10 @@ def test_stub_types(schema, expected):
     from tooljev.catalog import _py_type
 
     assert _py_type(schema) == expected
+
+
+async def test_rerank_defaults_to_what_the_backend_is_good_at(catalog, decider):
+    assert Searcher(catalog, decider, SearchConfig(**FAST)).rerank is False  # FakeDecider: no claim
+    decider.reranks_well = True
+    assert Searcher(catalog, decider, SearchConfig(**FAST)).rerank is True
+    assert Searcher(catalog, decider, SearchConfig(rerank=False, **FAST)).rerank is False

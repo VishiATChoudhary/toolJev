@@ -38,6 +38,7 @@ class HostedJev:
     """TypeSafe's hosted Jev. Needs TYPESAFE_API_KEY (or api_key=)."""
 
     max_options = HOSTED_MAX_OPTIONS
+    reranks_well = True  # measured: beats retrieval order on MCPToolBench++, LiveMCPBench, When2Call
 
     def __init__(self, model: str = "jev-latest", api_key: str | None = None, max_retries: int = 3,
                  timeout: float = 30.0):

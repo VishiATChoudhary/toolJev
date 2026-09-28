@@ -68,6 +68,7 @@ class Searcher:
         self.decider = decider
         self.cfg = cfg
         self.retriever = retriever
+        self.rerank = cfg.rerank if cfg.rerank is not None else getattr(decider, "reranks_well", False)
 
     async def search(self, query: str) -> dict[str, Any]:
         await self.catalog.refresh()
@@ -98,7 +99,7 @@ class Searcher:
             # the agent more (wrong detours) than showing a warned shortlist.
             result["warning"] = ("none of these tools looks like a strong fit; check the "
                                  "signatures before relying on them")
-        ranked = self.cfg.mode == "hierarchical" or self.cfg.rerank
+        ranked = self.cfg.mode == "hierarchical" or self.rerank
         if ranked:
             picked = take_by_mass(tool_probs, self.cfg.tool_mass, self.cfg.max_tools)
             result["confidence"] = round(confidence, 3)
@@ -133,7 +134,7 @@ class Searcher:
         hits = self.retriever.top(query, self.cfg.recall_k)
         candidates = [t for t, _ in hits]
         nouls_q = self._tool_nouls(candidates)
-        if self.cfg.rerank:
+        if self.rerank:
             probs, confidence, extra = await self._choice(
                 query, "Which tool should be called to carry out this request?",
                 {t.path: t.summary() or t.name for t in candidates}, nouls_q)

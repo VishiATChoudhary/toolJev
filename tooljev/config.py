@@ -27,11 +27,11 @@ class SearchConfig:
     # on MCPToolBench++, much less accurate at selection; kept for comparison.
     mode: str = "retrieve"
     recall_k: int = 15  # tools handed from retrieval to Jev
-    # Jev reranks the retrieved tools. Off by default: with the local nanojev
-    # encoder, reranking cut MCPToolBench++ top-1 from 0.625 to 0.233 (120-query
-    # pilot). Hosted Jev has not been measured. When off, retrieval order stands
-    # and Jev answers only "does any of these fit?".
-    rerank: bool = False
+    # Jev reranks the retrieved tools. None means "if the backend is good at it":
+    # on with hosted Jev (it beat retrieval at top-1 on all three routing
+    # benchmarks), off with the local nanojev encoder (it cut MCPToolBench++ top-1
+    # from 0.62 to 0.19). When off, retrieval order stands and Jev only judges fit.
+    rerank: bool | None = None
     dense_model: str = "BAAI/bge-base-en-v1.5"  # "" for BM25 only
     server_mass: float = 0.9  # keep servers until this much probability is covered
     max_servers: int = 3
