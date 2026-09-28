@@ -9,8 +9,8 @@ cd "$(dirname "$0")/.."
 export TOKENIZERS_PARALLELISM=false HF_HUB_OFFLINE=1
 LIMIT="${LIMIT:-200}"  # positives and negatives per dataset
 
-# 1. Routing + abstention: Jev judging fit (shipped default), and Jev reranking the top 15.
-for router in tooljev-hosted tooljev-hosted-rerank; do
+# 1. Routing + abstention: hosted Jev reranks the top 15 and judges fit (the shipped default).
+for router in tooljev-hosted-rerank; do
   uv run python -m bench.run --datasets when2call mcptoolbench livemcpbench \
     --routers "$router" --limit "$LIMIT" --resume
 done
@@ -18,4 +18,4 @@ done
 uv run python -m bench.gating --backend hosted
 # 3. Tables.
 uv run python -m bench.report > bench/results/report.md
-uv run python -m bench.report --match tooljev-hosted > bench/results/report_matched_hosted.md
+uv run python -m bench.report --match tooljev-hosted-rerank > bench/results/report_matched_hosted.md

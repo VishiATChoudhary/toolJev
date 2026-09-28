@@ -1,22 +1,18 @@
-"""`search(query)`: find the tools a request needs, with calibrated confidence.
+"""`search(query)`: find the tools a request needs, and say whether any fits.
 
-Two Jev passes, never an LLM:
+1. Retrieval (BM25 + bge-base embeddings, fused by reciprocal rank) shortlists
+   `recall_k` tools from the whole catalog in a few milliseconds.
+2. Jev looks at the shortlist in one call:
+   - a Choice over the candidates, which reranks them (on by default with hosted
+     Jev; the local nanojev encoder is worse than retrieval order, so it skips this);
+   - one Noul per candidate, "this request asks to <tool>", which becomes each
+     tool's `fit`. `in_catalog` is the highest fit; under `abstain_below` the
+     result carries a warning (or, with abstain="hard", no tools).
 
-1. On the query: which server (Choice), plus one Noul per server, "this request
-   can be handled by a tool for <server description>".
-2. On the tools of the servers carrying most of the probability: which tool
-   (Choice), plus one Noul per candidate tool, "this request asks to <tool>".
-
-`in_catalog` is the highest of those Nouls; below `abstain_below` no tools are
-returned. One Noul per server and per tool, rather than a single "can any of
-these serve this?", is deliberate: a single question over a list of
-descriptions reads as a poor hypothesis to entailment-style models and came out
-near zero for every query, in- or out-of-catalog, when measured with nanojev.
-
-Shortlists are sized by probability mass, not a fixed k: a confident answer
-returns one tool, a torn one returns several, capped. Picking the server first
-keeps each Choice under Jev's 255-option limit and, per MCP-Zero, is also more
-accurate than one flat choice over every tool.
+Measured with hosted Jev, the rerank lifts top-1 over retrieval alone from 0.73
+to 0.83 on MCPToolBench++, 0.40 to 0.54 on LiveMCPBench and 0.92 to 0.99 on
+When2Call (bench/RESULTS.md). `mode="hierarchical"` (Jev alone picks a server,
+then a tool) is the original design, kept as an ablation.
 """
 
 from __future__ import annotations

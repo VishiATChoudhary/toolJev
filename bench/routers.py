@@ -24,8 +24,9 @@ def tool_text(catalog: StaticCatalog, t) -> str:
 class JevRouter:
     """toolJev's own search, with the shortlist opened up so recall@k is measurable.
 
-    variant: "" (the default: retrieval order, Jev only for abstention),
-    "rerank" (Jev reranks the retrieved tools), "hier" (Jev alone, server then tool).
+    variant: "" (the shipped default: Jev reranks if the backend is good at it, so
+    hosted yes, local no), "rerank" (always rerank), "fit" (retrieval order, Jev only
+    judges fit), "hier" (Jev alone, server then tool).
     """
 
     def __init__(self, kind: str, variant: str = ""):
@@ -38,7 +39,7 @@ class JevRouter:
         # abstain_below=0 so every case yields a ranking; abstention is scored from in_catalog.
         self.cfg = SearchConfig(tool_mass=1.0, max_tools=10, abstain_below=0.0,
                                 mode="hierarchical" if variant == "hier" else "retrieve",
-                                rerank=variant == "rerank")
+                                rerank={"rerank": True, "fit": False}.get(variant))
         self.retriever = Retriever(self.cfg.dense_model)
 
     async def route(self, query: str, catalog: StaticCatalog) -> dict[str, Any]:

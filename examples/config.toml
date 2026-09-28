@@ -5,7 +5,8 @@ trace_dir = "~/.tooljev/traces"
 catalog_ttl_secs = 300
 
 [decider]
-# "hosted" = TypeSafe Jev (needs TYPESAFE_API_KEY), "nanojev" = local model, no key.
+# "hosted" = TypeSafe Jev (needs TYPESAFE_API_KEY; the default and much more accurate),
+# "nanojev" = local stand-in, no key. This demo uses nanojev so it runs anywhere.
 backend = "nanojev"
 kind = "encoder"          # nanojev only: "encoder" (NLI, faster) or "decoder" (small LM)
 # dtype = "float16"       # nanojev only: ~2x faster on Apple MPS / CUDA

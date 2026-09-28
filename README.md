@@ -79,8 +79,9 @@ The two extras:
   once.
 - `retrieval` adds embedding search next to BM25.
 
-To use hosted Jev instead, set `TYPESAFE_API_KEY` and `backend = "hosted"`
-(step 3).
+For real use, set `TYPESAFE_API_KEY` and use hosted Jev (`backend = "hosted"`,
+the default when the config has no `[decider]` table). It is much more accurate than the local
+stand-in: see Results.
 
 ### 2. Try it
 
@@ -98,8 +99,7 @@ for remote ones.
 ```toml
 # tooljev.toml
 [decider]
-backend = "nanojev"     # or "hosted", with TYPESAFE_API_KEY set
-kind = "encoder"
+backend = "hosted"      # reads TYPESAFE_API_KEY; or "nanojev" (+ kind = "encoder") to run with no key
 
 [servers.github]
 description = "GitHub repos, issues and pull requests"
@@ -188,8 +188,8 @@ this; the tool descriptions do.
 
 | `[decider] backend` | What | Needs |
 |---|---|---|
-| `hosted` | TypeSafe Jev via `typesafe-sdk` | `TYPESAFE_API_KEY` |
-| `nanojev` | [nanojev](https://github.com/VishiATChoudhary/nanojev), local, `kind = "encoder"` or `"decoder"` | nothing (downloads a model once) |
+| `hosted` (default, recommended) | TypeSafe Jev via `typesafe-sdk`. Search reranks with it | `TYPESAFE_API_KEY` |
+| `nanojev` | [nanojev](https://github.com/VishiATChoudhary/nanojev), a local stand-in, `kind = "encoder"` or `"decoder"`. Search keeps retrieval order | nothing (downloads a model once) |
 
 Both implement one method, `decide(state, questions) -> answers`, in TypeSafe's
 wire format, so everything above the backend is shared. Use the encoder for
@@ -201,21 +201,24 @@ ones.
 1. **Recall:** BM25 and bge-base embeddings over every tool's description, fused
    by reciprocal rank. The top 15 go on. This takes a few milliseconds, and the
    embeddings are cached per tool.
-2. **Fit:** one Jev call asks a Noul per candidate, "this request asks to <what
-   the tool does>". Each returned tool carries that probability as `fit`.
+2. **Rank and fit, in one Jev call:** a Choice over the 15 candidates reorders
+   them, and a Noul per candidate ("this request asks to <what the tool does>")
+   becomes that tool's `fit`. With hosted Jev the rerank lifts top-1 over
+   retrieval alone on every benchmark (MCPToolBench++ 0.73 to 0.83). The local
+   nanojev encoder reranks worse than retrieval, so with it the Choice is skipped
+   and retrieval order stands (`rerank = true/false` overrides either way).
 3. **Nothing fits:** `in_catalog` is the best fit. Below `abstain_below`
    (default 0.5), the result carries a warning but still lists the tools.
    `abstain = "hard"` returns none instead. Hiding tools cost agents more in
    wrong detours than a warned shortlist did.
-4. The top `max_tools` (default 5) come back in retrieval order, each with a
-   Python signature.
+4. The top `max_tools` (default 5) come back, each with a Python signature.
 
-Two alternatives are kept behind config because the benchmarks rejected them:
-- `rerank = true` lets Jev reorder the candidates.
-- `mode = "hierarchical"` has Jev pick a server, then a tool, with knockout
-  rounds past the 255-option limit.
+`mode = "hierarchical"` (Jev picks a server, then a tool, with knockout rounds
+past the 255-option limit) is the original design, kept because the benchmarks
+rejected it.
 
-Search latency on MCPToolBench++ is 74 ms p50 with the local encoder.
+Search latency on MCPToolBench++: about 285 ms p50 with hosted Jev, 74 ms with
+the local encoder.
 
 ### Sandbox
 
