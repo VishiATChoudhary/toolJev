@@ -8,30 +8,136 @@
 [![python](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-<img src="docs/assets/showcase.gif" alt="toolJev: search over 612 MCP tools, then 400 support tickets routed in one execute call" width="100%">
-
-*Real run, local models, no API key: `uv run python examples/showcase.py`*
-
 </div>
 
----
+## Results
 
-Give an agent 600 MCP tools and it drowns in schemas. Give it one tool call per
-turn and a 400-item job takes 400 calls. toolJev fronts every MCP server you
-have and gives the agent two tools instead:
+I benchmarked toolJev on MCPToolBench++, LiveMCPBench, When2Call, BFCL and live
+Claude Haiku agents. Several results went against my first design, and the
+design changed to match.
 
-- **`search(query)`**: retrieval (BM25 + embeddings) shortlists the tools, and
-  [Jev](https://typesafe.ai), a decision model that returns calibrated
-  probabilities instead of text, says whether any of them actually fits.
-- **`execute(code, session=None)`**: the agent writes Python that calls tools as
-  `mcp.<server>.<tool>()`. Where a
-  [Recursive Language Model](https://arxiv.org/abs/2512.24601) would call an LLM
-  inside that code, toolJev calls **`jev.choice / noul / score / map`**: typed
-  answers, about 100 ms each, no generation. The code runs in a
-  [Monty](https://github.com/pydantic/monty) sandbox with no files, network or
-  environment.
+<p align="center"><img src="docs/results_card.png" alt="results summary" width="100%"></p>
+
+| Question | Result | Takeaway |
+|---|---|---|
+| Can a decision model pick the right tool? | Jev alone: **18%** right first. BM25 + embeddings: **62%** (MCPToolBench++, 1,509 queries) | Retrieval picks the tools; Jev judges them |
+| Does it know when no tool fits? | Near-misses: Jev **0.88** AUROC vs 0.74 for embeddings. Out-of-domain: embeddings **0.91** vs 0.72 | The right signal depends on the kind of miss |
+| Is Jev's confidence honest? | Its surest **29%** of 400 tickets were **98.3%** right. Claude Haiku on all of them: 99.3% | Safe to act on confident answers in code |
+| Is it worth it at 612 tools? | Same task success as Claude Code's own tool search (0.81), **61% fewer** input tokens, **23% cheaper**, but slower | Pays off at scale |
+| Is it worth it at 87 tools? | Direct tool calling was more accurate (0.94 vs 0.89) and cheaper | Don't bother below ~100 tools |
+| Bulk work: route 400 tickets | **3.6 to 5.2x cheaper** than the LLM doing each one, but 12 to 25 points less accurate with the local model | Use confidence gating, not blind automation |
+
+<p align="center">
+<img src="docs/gating.png" alt="Jev confidence vs accuracy" width="49%">
+<img src="docs/abstention.png" alt="abstention AUROC by benchmark" width="49%">
+</p>
+
+Sample sizes, methods and every caveat are in **[bench/RESULTS.md](bench/RESULTS.md)**.
+The short version of the caveats:
+- the agent runs use 1 to 2 reps per setup
+- upstream servers are mocks
+- most runs use [nanojev](https://github.com/VishiATChoudhary/nanojev), a local stand-in for Jev, because the hosted Jev credits ran out after an 80-query pilot
+
+## What it is
+
+<img src="docs/assets/showcase.gif" alt="toolJev: search over 612 MCP tools, then 400 support tickets routed in one execute call" width="100%">
+
+*A real run with local models and no API key: `uv run python examples/showcase.py`*
+
+Give an agent 600 MCP tools and it drowns in tool schemas. Give it one tool
+call per turn, and a 400-item job takes 400 calls. toolJev sits in front of
+every MCP server you have and gives the agent **two tools** instead:
+
+- **`search(query)`** finds the few tools a request needs. Retrieval shortlists
+  them, and [Jev](https://typesafe.ai) says whether any of them actually fits.
+  Jev is a decision model: it returns calibrated probabilities over options you
+  give it, never text.
+- **`execute(code)`** runs Python the agent writes. The code calls tools as
+  `mcp.<server>.<tool>()`, and makes per-item judgements with
+  `jev.choice / noul / map`: typed answers in about 100 ms, no LLM turn. This is
+  [Code Mode](https://blog.cloudflare.com/code-mode-mcp/) crossed with a
+  [Recursive Language Model](https://arxiv.org/abs/2512.24601), with Jev in the
+  place of the sub-LLM.
 
 <p align="center"><img src="docs/architecture.png" alt="toolJev architecture" width="100%"></p>
+
+The LLM writes the plan once, Jev makes the per-item calls, and only the items
+Jev is unsure about come back to the LLM.
+
+## How to use it
+
+### 1. Install
+
+```bash
+git clone https://github.com/VishiATChoudhary/toolJev && cd toolJev
+uv venv && uv pip install -e ".[local,retrieval]"
+```
+
+The two extras:
+- `local` installs [nanojev](https://github.com/VishiATChoudhary/nanojev), which
+  runs Jev-style decisions on your machine with no key. The model downloads
+  once.
+- `retrieval` adds embedding search next to BM25.
+
+To use hosted Jev instead, set `TYPESAFE_API_KEY` and `backend = "hosted"`
+(step 3).
+
+### 2. Try it
+
+```bash
+uv run python examples/showcase.py   # the GIF above: 612 tools, 400 tickets, all local
+uv run python examples/demo.py       # the real gateway over MCP stdio, 3 toy upstream servers
+```
+
+### 3. Point it at your MCP servers
+
+Write a TOML file with one table per upstream server. Anything you'd give an MCP
+client goes in it: `command`/`args`/`env` for local servers, `url`/`headers`
+for remote ones.
+
+```toml
+# tooljev.toml
+[decider]
+backend = "nanojev"     # or "hosted", with TYPESAFE_API_KEY set
+kind = "encoder"
+
+[servers.github]
+description = "GitHub repos, issues and pull requests"
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-github"]
+env = { GITHUB_PERSONAL_ACCESS_TOKEN = "ghp_..." }
+
+[servers.tickets]
+description = "Customer support tickets: list, assign, close"
+url = "https://support.example.com/mcp"
+headers = { Authorization = "Bearer ..." }
+allow = ["list_tickets", "assign_ticket"]   # optional: expose only these tools
+```
+
+A one-line `description` per server helps search a lot. Every option, with its
+default, is in [`examples/config.toml`](examples/config.toml).
+
+### 4. Connect your agent
+
+toolJev is an ordinary MCP server, so any MCP client works. For Claude Code:
+
+```bash
+claude mcp add tooljev -- uv --directory /path/to/toolJev run tooljev --config /path/to/tooljev.toml
+```
+
+For remote clients, serve streamable HTTP with
+`uv run tooljev --config tooljev.toml --transport http --port 8765`.
+
+### 5. What your agent does with it
+
+The agent never sees your upstream tools directly. It works in two moves.
+
+**Find tools:** `search("refund order 1234 on paypal")` returns up to 5 tools,
+each with a Python signature and a `fit` score. If nothing in the catalog fits,
+the result carries a warning so the agent answers on its own.
+
+**Run code:** `execute(code)` runs Python with the found tools and `jev` in
+scope:
 
 ```python
 tickets = await mcp.support.list_tickets()
@@ -44,59 +150,41 @@ for t, a in zip(tickets, answers):
         await mcp.support.route_ticket(ticket_id=t["id"], queue=a["queue"]["choice"])
     else:                                 # Jev is not: hand back to the agent
         unsure.append(t["id"])
-FINAL({"unsure": unsure})
+FINAL({"unsure": unsure})                 # only this reaches the agent's context
 ```
 
-That is the whole idea: the LLM writes the plan once, Jev makes the per-item
-calls, and only the cases Jev is unsure about come back to the LLM.
+What's in scope inside `execute`:
 
-## What the benchmarks say
+| call | returns |
+|---|---|
+| `await mcp.<server>.<tool>(**kwargs)` | the tool's result; arguments are checked against its schema first |
+| `await jev.choice(state, instructions, options)` | `{"choice", "probabilities", "confidence"}` |
+| `await jev.noul(state, statement)` | probability the statement is true |
+| `await jev.score(state, instructions, levels)` | `{"score", "probabilities", "confidence"}` |
+| `await jev.map(states, questions, min_confidence=)` | one answer dict per state, plus `"confident"` when a threshold is given |
+| `FINAL(value)` / `print(...)` | what goes back to the agent (the last expression also works) |
 
-I ran it against MCPToolBench++, LiveMCPBench, When2Call, BFCL and live Claude
-Haiku agents. Several results went against my first design, and the design
-changed to match. Full tables, sample sizes and caveats:
-**[bench/RESULTS.md](bench/RESULTS.md)**.
+Pass `execute(code, session="work")` to keep variables between calls, like a
+REPL: fetch once, inspect, then act. You don't need to teach your agent any of
+this; the tool descriptions do.
 
-<p align="center"><img src="docs/results_card.png" alt="results summary" width="100%"></p>
+### 6. When to use it, and when not
 
-- **Retrieval should pick tools; Jev should judge them.** Jev alone picking a
-  server and then a tool got the right tool first 18% of the time on
-  MCPToolBench++. BM25 + MiniLM got 62%.
-- **Knowing when nothing fits depends on the kind of miss.** Local Jev wins on
-  near-misses (When2Call AUROC 0.88 vs 0.74 for embeddings). Embeddings win
-  when the request is out of domain (0.91 vs 0.72). Hosted Jev scored 0.91
-  there on an 80-query pilot.
-- **Jev's confidence is honest enough to gate on.** Its most confident 29% of
-  400 tickets were 98.3% right. Claude Haiku doing every ticket itself: 99.3%.
-- **Code Mode pays off at scale, not before.** At 612 tools it matched Claude
-  Code's built-in tool search on success, with 61% fewer input tokens. At 87
-  tools, plain direct tool calling was better.
+**Use it when:**
+- You connect **hundreds of tools**. At 612 tools it cut input tokens by 61%
+  against Claude Code's own tool search, at the same success rate.
+- Your agent does **the same judgement over many items**: triage, routing,
+  filtering, labelling. Gate on Jev's confidence and let the LLM handle the rest.
 
-<p align="center">
-<img src="docs/gating.png" alt="Jev confidence vs accuracy" width="49%">
-<img src="docs/abstention.png" alt="abstention AUROC by benchmark" width="49%">
-</p>
+**Skip it when:**
+- You have **fewer than about 100 tools**. Direct tool calling was more
+  accurate and cheaper at 87 tools.
+- You need **every item right** and cost doesn't matter. The LLM alone was more
+  accurate on triage.
 
-## Run it
+## How it works
 
-```bash
-git clone https://github.com/VishiATChoudhary/toolJev && cd toolJev
-uv venv && uv pip install -e ".[local,retrieval,dev]"   # local Jev (nanojev) + embedding recall
-uv run python examples/showcase.py                        # the GIF above, on your machine
-uv run python examples/demo.py                            # the real MCP gateway over stdio, 3 toy servers
-```
-
-Add it to Claude Code:
-
-```bash
-claude mcp add tooljev -- uv --directory /path/to/toolJev run tooljev --config examples/config.toml
-```
-
-`--transport http --port 8765` serves streamable HTTP instead of stdio. List
-your own upstream servers in a TOML file like
-[`examples/config.toml`](examples/config.toml).
-
-## Backends
+### Backends
 
 | `[decider] backend` | What | Needs |
 |---|---|---|
@@ -104,9 +192,11 @@ your own upstream servers in a TOML file like
 | `nanojev` | [nanojev](https://github.com/VishiATChoudhary/nanojev), local, `kind = "encoder"` or `"decoder"` | nothing (downloads a model once) |
 
 Both implement one method, `decide(state, questions) -> answers`, in TypeSafe's
-wire format, so everything above the backend is shared.
+wire format, so everything above the backend is shared. Use the encoder for
+nanojev: the decoder could not tell in-catalog requests from out-of-catalog
+ones.
 
-## How `search` decides
+### How `search` decides
 
 1. **Recall:** BM25 and MiniLM embeddings over every tool's description, fused
    by reciprocal rank. The top 15 go on. This takes a few milliseconds, and the
@@ -127,56 +217,54 @@ Two alternatives are kept behind config because the benchmarks rejected them:
 
 Search latency on MCPToolBench++ is 74 ms p50 with the local encoder.
 
-## Sandbox limits
+### Sandbox
 
-Each `execute` runs in a Monty worker with no filesystem, network or
-environment access. It gets a fresh worker unless it names a `session`; up to 8
-sessions are kept, least recently used first out. Limits, all set under
-`[sandbox]`, are sized for bulk jobs of hundreds of items:
+Each `execute` runs in a [Monty](https://github.com/pydantic/monty) worker with
+no filesystem, network or environment access. It gets a fresh worker unless it
+names a `session`; up to 8 sessions are kept, and the least recently used one
+goes first.
 
+Limits, all set under `[sandbox]`, are sized for bulk jobs of hundreds of items:
 - 120 s wall clock and 20 s of sandbox CPU
 - 256 MB of memory
 - 2,000 host calls; a whole `jev.map` counts as one call, up to 5,000 items
 - 16 concurrent calls
 - stdout truncated at 4k characters
 
-A session that hits a time or memory limit is discarded, as Monty advises.
-Tool arguments are checked against the tool's JSON Schema before the call goes
-upstream. When an upstream tool fails, the error surfaces in the sandbox as a
-catchable `RuntimeError`. Each search and execute, and every host call inside it, is
-logged to `~/.tooljev/traces/YYYY-MM-DD.jsonl`.
+Behaviour worth knowing:
+- A session that hits a time or memory limit is discarded, as Monty advises.
+- When an upstream tool fails, sandbox code sees a catchable `RuntimeError`.
+- Each search and execute, and every host call inside it, is logged to
+  `~/.tooljev/traces/YYYY-MM-DD.jsonl`.
 
-The sandbox is not authorization: anything a listed upstream tool can do,
+**The sandbox is not authorization.** Anything a listed upstream tool can do,
 sandbox code can do. Use per-server `allow = [...]` to expose less.
 
 ## Not yet
 
-- Filling free-text arguments. Jev cannot write them; the agent writes them in
-  code.
-- `llm_query` fallback inside the sandbox.
-- Hosted Jev beyond an 80-query pilot: API credits ran out mid-benchmark.
-- Combining embedding similarity and Jev fit into one abstention score. A
-  simple fitted combination did not beat embeddings alone.
+- **Free-text arguments.** Jev cannot write them; the agent writes them in code.
+- **An `llm_query` fallback** inside the sandbox.
+- **Hosted Jev beyond an 80-query pilot.** The API credits ran out mid-benchmark.
+- **One combined abstention score.** Fusing embedding similarity with Jev's fit
+  is not done yet; a simple fitted combination did not beat embeddings alone.
 
-## Tests and benchmarks
+## Reproduce
 
 ```bash
-uv run pytest -m "not slow"     # offline, fake decider, in-process upstreams
-uv run pytest -m slow           # real nanojev
-TYPESAFE_API_KEY=... uv run pytest -m hosted
-
-uv pip install -e ".[bench]"
-uv run python -m bench.run && uv run python -m bench.report      # routing + abstention
+uv pip install -e ".[local,retrieval,dev,bench]"
+uv run pytest -m "not slow"                                      # offline: fake decider, in-process servers
+uv run pytest -m slow                                            # real nanojev
+uv run python -m bench.run && uv run python -m bench.report      # routing + abstention benchmarks
 uv run python -m bench.agent.run_agent --task triage --n 40      # agent in the loop (uses `claude -p`)
 ```
 
-Benchmark data is not committed: fetch it into `bench/data/` as described in
-[bench/RESULTS.md](bench/RESULTS.md).
+Benchmark data is not committed. Fetch it into `bench/data/` as listed in
+[bench/RESULTS.md](bench/RESULTS.md#data).
 
 ## Prior art and credit
 
 - **Code Mode:** [Cloudflare](https://blog.cloudflare.com/code-mode-mcp/),
-  [Anthropic](https://www.anthropic.com/engineering/code-execution-with-mcp),
+  [Anthropic](https://www.anthropic.com/engineering/code-execution-with-mcp)
   and [FastMCP](https://gofastmcp.com/servers/transforms/code-mode).
 - **Recursive Language Models:** [Zhang, Kraska and Khattab](https://arxiv.org/abs/2512.24601).
 - **Jev:** [TypeSafe](https://typesafe.ai).
@@ -184,8 +272,8 @@ Benchmark data is not committed: fetch it into `bench/data/` as described in
   stand-in with the same interface.
 - **Sandbox:** [Monty](https://github.com/pydantic/monty), by Pydantic.
 - **Tool retrieval:** [RAG-MCP](https://arxiv.org/abs/2505.03275),
-  [MCP-Zero](https://arxiv.org/abs/2506.01056), and "Selection Is Retrieval,
+  [MCP-Zero](https://arxiv.org/abs/2506.01056) and "Selection Is Retrieval,
   Abstention Is Not" ([arXiv 2609.18672](https://arxiv.org/abs/2609.18672)).
   This repo reached the same conclusion the hard way.
 
-The full survey is in [RESEARCH.md](RESEARCH.md).
+The full prior-art survey is in [RESEARCH.md](RESEARCH.md).
