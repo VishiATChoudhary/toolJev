@@ -10,6 +10,9 @@
 | tooljev-encoder-hier | 0.181 | 0.341 | 0.307 | 0.561 | 0.292 | 0.335 | 4.74 | 743 | 1457 |
 | tooljev-encoder-rerank | 0.193 | 0.587 | 0.447 | 0.627 | 0.227 | 0.567 | 4.77 | 162 | 246 |
 | tooljev-encoder | 0.624 | 0.796 | 0.702 | 0.848 | 0.656 | 0.570 | 2.81 | 74 | 97 |
+| hybrid-bge | 0.698 | 0.845 | 0.732 | 0.927 | 0.973 | - | - | 8 | 10 |
+| tooljev-hosted-fit | 0.700 | 0.850 | 0.700 | 0.975 | 0.750 | 0.650 | 2.33 | 275 | 383 |
+| tooljev-hosted-rerank | 0.825 | 0.955 | 0.850 | 0.990 | 0.980 | 0.925 | 1.48 | 284 | 345 |
 
 ### LiveMCPBench routing (n=94)
 
@@ -22,6 +25,9 @@
 | tooljev-encoder-hier | 0.106 | 0.076 | 0.149 | 0.106 | 0.128 | 3.43 | 4894 | 6877 |
 | tooljev-encoder-rerank | 0.245 | 0.284 | 0.447 | 0.362 | 0.468 | 4.77 | 168 | 390 |
 | tooljev-encoder | 0.309 | 0.405 | 0.564 | 0.468 | 0.457 | 3.21 | 93 | 181 |
+| hybrid-bge | 0.404 | 0.424 | 0.660 | 0.511 | - | - | 9 | 15 |
+| tooljev-hosted-fit | 0.375 | 0.404 | 0.625 | 0.600 | 0.600 | 2.35 | 288 | 402 |
+| tooljev-hosted-rerank | 0.543 | 0.499 | 0.723 | 0.638 | 0.723 | 2.21 | 292 | 468 |
 
 ### When2Call routing (n=250)
 
@@ -34,14 +40,17 @@
 | tooljev-encoder-hier | 0.684 | 0.976 | 0.684 | 0.888 | 0.948 | 1.80 | 55 | 172 |
 | tooljev-encoder-rerank | 0.667 | 1.000 | 0.667 | 0.893 | 0.980 | 2.19 | 40 | 114 |
 | tooljev-encoder | 0.792 | 1.000 | 0.792 | 0.944 | 0.948 | 1.80 | 28 | 77 |
+| hybrid-bge | 0.916 | 1.000 | 0.916 | 1.000 | - | - | 8 | 9 |
+| tooljev-hosted-fit | 0.900 | 1.000 | 0.900 | 1.000 | 1.000 | 1.95 | 309 | 347 |
+| tooljev-hosted-rerank | 0.985 | 1.000 | 0.985 | 1.000 | 1.000 | 1.06 | 299 | 420 |
 
 ### Abstention AUROC (in-catalog score, answerable vs not)
 
-| benchmark | bm25 | dense-minilm | dense-mpnet | hybrid-rrf | tooljev-encoder | tooljev-encoder-hier | tooljev-encoder-rerank |
-|---|---|---|---|---|---|---|---|
-| MCPToolBench++ (leave-category-out) | 0.751 | 0.913 | 0.915 | 0.769 | 0.721 | 0.814 | 0.712 |
-| LiveMCPBench (leave-server-out) | 0.604 | 0.685 | 0.663 | 0.637 | 0.592 | 0.553 | 0.592 |
-| When2Call | 0.628 | 0.735 | 0.726 | 0.534 | 0.884 | 0.869 | 0.901 |
+| benchmark | bm25 | dense-minilm | dense-mpnet | hybrid-bge | hybrid-rrf | tooljev-encoder | tooljev-encoder-hier | tooljev-encoder-rerank | tooljev-hosted-fit | tooljev-hosted-rerank |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MCPToolBench++ (leave-category-out) | 0.751 | 0.913 | 0.915 | 0.803 | 0.769 | 0.721 | 0.814 | 0.712 | 0.897 | 0.894 |
+| LiveMCPBench (leave-server-out) | 0.604 | 0.685 | 0.663 | 0.623 | 0.637 | 0.592 | 0.553 | 0.592 | 0.711 | 0.724 |
+| When2Call | 0.628 | 0.735 | 0.726 | 0.531 | 0.534 | 0.884 | 0.869 | 0.901 | 0.967 | 0.942 |
 
 ### Threshold transfer (fraction handled correctly)
 
@@ -57,3 +66,8 @@
 | tooljev-encoder-rerank @ default 0.5 | 0.5 | 0.873 | 0.553 | 0.585 | 0.653 | 0.620 |
 | tooljev-encoder @ fit on When2Call @90% TPR | 0.009 | 0.633 | 0.926 | 0.085 | 0.990 | 0.077 |
 | tooljev-encoder @ default 0.5 | 0.5 | 0.858 | 0.553 | 0.585 | 0.664 | 0.610 |
+| hybrid-bge @ fit on When2Call @90% TPR | 0.0489 | - | 0.330 | 0.798 | 0.701 | 0.873 |
+| tooljev-hosted-fit @ fit on When2Call @90% TPR | 0.31 | - | 0.850 | 0.475 | 0.925 | 0.475 |
+| tooljev-hosted-fit @ default 0.5 | 0.5 | - | 0.800 | 0.500 | 0.825 | 0.725 |
+| tooljev-hosted-rerank @ fit on When2Call @90% TPR | 0.36 | - | 0.830 | 0.479 | 0.950 | 0.611 |
+| tooljev-hosted-rerank @ default 0.5 | 0.5 | - | 0.787 | 0.543 | 0.845 | 0.749 |

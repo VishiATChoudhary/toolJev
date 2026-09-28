@@ -16,14 +16,14 @@ BG, INK, INK2, LINE, TILE = "#fcfcfb", "#0b0b0b", "#52514e", "#dcdad4", "#ffffff
 BLUE, ORANGE, AQUA, YELLOW = "#2a78d6", "#eb6834", "#1baf7a", "#b07800"
 
 TILES = [
-    ("61% fewer", "input tokens than Claude Code's own tool search",
-     "same task success (0.81) over 612 MCP tools,\n23% lower cost, but slower", BLUE),
-    ("18% → 70%", "right tool first: Jev alone vs retrieval first",
-     "MCPToolBench++, 1,509 queries. So retrieval\npicks the tools and Jev judges them", ORANGE),
-    ("98.3%", "accuracy on the 29% of tickets Jev was surest of",
-     "400 banking77 tickets. Claude Haiku routing\nall of them itself: 99.3%", AQUA),
-    ("3.6-5.2x", "cheaper bulk triage, done in code with jev.map",
-     "400 tickets in one execute, but 12-25 points\nless accurate with the local model", YELLOW),
+    ("83%", "right tool ranked first, retrieval + hosted Jev",
+     "MCPToolBench++. Retrieval alone: 73%.\nLiveMCPBench 40% → 54%, When2Call 92% → 99%", BLUE),
+    ("5.3x cheaper", "an agent routing 400 support tickets",
+     "98.8% right for $0.063 with Jev in code.\nClaude Haiku routing each one itself: 99.3%, $0.33", ORANGE),
+    ("99.7%", "right on the 97% of tickets Jev was ≥ 0.9 sure of",
+     "400 banking77 tickets, no LLM per ticket.\nIts confidence is safe to act on in code", AQUA),
+    ("77% fewer", "input tokens than Claude Code's own tool search",
+     "612 MCP tools: right tool 89% vs 81% (lenient),\n28% cheaper, but slower", YELLOW),
 ]
 
 fig = plt.figure(figsize=(16, 9), facecolor=BG)
@@ -35,7 +35,7 @@ ax.axis("off")
 ax.text(7, 81, "toolJev", fontsize=30, weight="bold", color=INK, va="center")
 ax.text(7, 74, "Code Mode for MCP, where the sub-model is a calibrated decision model (Jev), not an LLM.",
         fontsize=15, color=INK2, va="center")
-ax.text(7, 69.5, "I benchmarked it on MCPToolBench++, LiveMCPBench, When2Call and live Claude agents:",
+ax.text(7, 69.5, "Benchmarked with hosted Jev on MCPToolBench++, LiveMCPBench, When2Call and live Claude agents:",
         fontsize=15, color=INK2, va="center")
 
 w, h, gap = 71, 26, 4

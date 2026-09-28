@@ -2,56 +2,56 @@
   "routing": {
     "mcptoolbench": {
       "bm25": {
-        "n": 1509,
-        "top1": 0.5347912524850894,
-        "recall@5": 0.7123923127899271,
-        "server@1": 0.5977468522200132,
+        "n": 211,
+        "top1": 0.5639810426540285,
+        "recall@5": 0.7630331753554502,
+        "server@1": 0.6682464454976303,
         "p50_ms": 0.09,
         "p95_ms": 0.12,
-        "category@1": 0.6951623591782637,
-        "top1@50%cov": 0.8315649867374005
+        "category@1": 0.7345971563981043,
+        "top1@50%cov": 0.8095238095238095
       },
       "dense-minilm": {
-        "n": 1509,
-        "top1": 0.5473823724320742,
-        "recall@5": 0.776673293571902,
-        "server@1": 0.6819085487077535,
-        "p50_ms": 5.35,
-        "p95_ms": 10.36,
-        "category@1": 0.8946322067594433,
-        "top1@50%cov": 0.7068965517241379
+        "n": 211,
+        "top1": 0.6066350710900474,
+        "recall@5": 0.8246445497630331,
+        "server@1": 0.7440758293838863,
+        "p50_ms": 5.38,
+        "p95_ms": 10.5,
+        "category@1": 0.919431279620853,
+        "top1@50%cov": 0.7523809523809524
       },
       "dense-mpnet": {
-        "n": 1509,
-        "top1": 0.5566600397614314,
-        "recall@5": 0.7939032471835653,
-        "server@1": 0.6520874751491054,
-        "p50_ms": 9.72,
-        "p95_ms": 16.22,
-        "category@1": 0.8893306825712393,
-        "top1@50%cov": 0.7029177718832891
+        "n": 211,
+        "top1": 0.6303317535545023,
+        "recall@5": 0.8530805687203792,
+        "server@1": 0.7203791469194313,
+        "p50_ms": 10.02,
+        "p95_ms": 16.06,
+        "category@1": 0.919431279620853,
+        "top1@50%cov": 0.780952380952381
       },
       "hybrid-rrf": {
-        "n": 1509,
-        "top1": 0.6242544731610338,
-        "recall@5": 0.7958913187541418,
-        "server@1": 0.7017892644135189,
-        "p50_ms": 5.28,
-        "p95_ms": 9.35,
-        "category@1": 0.8482438701126573,
-        "top1@50%cov": 0.8328912466843501
+        "n": 211,
+        "top1": 0.6303317535545023,
+        "recall@5": 0.8388625592417062,
+        "server@1": 0.7345971563981043,
+        "p50_ms": 5.32,
+        "p95_ms": 8.19,
+        "category@1": 0.8436018957345972,
+        "top1@50%cov": 0.8857142857142857
       },
       "tooljev-encoder-hier": {
-        "n": 1509,
-        "top1": 0.18091451292246521,
-        "recall@5": 0.3412856196156395,
-        "server@1": 0.3074884029158383,
-        "p50_ms": 743.06,
-        "p95_ms": 1456.56,
-        "category@1": 0.56129887342611,
-        "shortlist_hit": 0.33465871438038436,
-        "shortlist_size": 4.740225314777999,
-        "top1@50%cov": 0.2917771883289125
+        "n": 211,
+        "top1": 0.15639810426540285,
+        "recall@5": 0.32701421800947866,
+        "server@1": 0.3033175355450237,
+        "p50_ms": 718.98,
+        "p95_ms": 1407.51,
+        "category@1": 0.5308056872037915,
+        "shortlist_hit": 0.3222748815165877,
+        "shortlist_size": 4.758293838862559,
+        "top1@50%cov": 0.23809523809523808
       },
       "tooljev-encoder-rerank": {
         "n": 150,
@@ -66,26 +66,26 @@
         "top1@50%cov": 0.22666666666666666
       },
       "tooljev-encoder": {
-        "n": 1509,
-        "top1": 0.6242544731610338,
-        "recall@5": 0.7958913187541418,
-        "server@1": 0.7017892644135189,
-        "p50_ms": 73.61,
-        "p95_ms": 97.34,
-        "category@1": 0.8482438701126573,
-        "shortlist_hit": 0.5699138502319416,
-        "shortlist_size": 2.809145129224652,
-        "top1@50%cov": 0.656498673740053
+        "n": 211,
+        "top1": 0.6303317535545023,
+        "recall@5": 0.8388625592417062,
+        "server@1": 0.7345971563981043,
+        "p50_ms": 73.58,
+        "p95_ms": 96.24,
+        "category@1": 0.8436018957345972,
+        "shortlist_hit": 0.5639810426540285,
+        "shortlist_size": 2.8199052132701423,
+        "top1@50%cov": 0.638095238095238
       },
       "hybrid-bge": {
-        "n": 1509,
-        "top1": 0.6984758117958914,
-        "recall@5": 0.8449304174950298,
-        "server@1": 0.731610337972167,
-        "p50_ms": 8.0,
-        "p95_ms": 10.04,
-        "category@1": 0.9271040424121935,
-        "top1@50%cov": 0.9734748010610079
+        "n": 211,
+        "top1": 0.7251184834123223,
+        "recall@5": 0.8767772511848341,
+        "server@1": 0.7630331753554502,
+        "p50_ms": 7.91,
+        "p95_ms": 9.5,
+        "category@1": 0.9478672985781991,
+        "top1@50%cov": 0.9809523809523809
       },
       "tooljev-hosted-fit": {
         "n": 40,
@@ -216,51 +216,51 @@
     },
     "when2call+": {
       "bm25": {
-        "n": 250,
-        "top1": 0.716,
+        "n": 201,
+        "top1": 0.7213930348258707,
         "recall@5": 1.0,
-        "server@1": 0.716,
+        "server@1": 0.7213930348258707,
         "p50_ms": 0.03,
         "p95_ms": 0.06,
-        "top1@50%cov": 0.752
+        "top1@50%cov": 0.75
       },
       "dense-minilm": {
-        "n": 250,
-        "top1": 0.88,
+        "n": 201,
+        "top1": 0.8855721393034826,
         "recall@5": 1.0,
-        "server@1": 0.88,
+        "server@1": 0.8855721393034826,
         "p50_ms": 3.45,
-        "p95_ms": 5.2,
-        "top1@50%cov": 0.92
+        "p95_ms": 5.4,
+        "top1@50%cov": 0.9
       },
       "dense-mpnet": {
-        "n": 250,
-        "top1": 0.908,
+        "n": 201,
+        "top1": 0.900497512437811,
         "recall@5": 1.0,
-        "server@1": 0.908,
-        "p50_ms": 11.43,
-        "p95_ms": 21.72,
-        "top1@50%cov": 0.928
+        "server@1": 0.900497512437811,
+        "p50_ms": 11.35,
+        "p95_ms": 22.66,
+        "top1@50%cov": 0.91
       },
       "hybrid-rrf": {
-        "n": 250,
-        "top1": 0.792,
+        "n": 201,
+        "top1": 0.7960199004975125,
         "recall@5": 1.0,
-        "server@1": 0.792,
-        "p50_ms": 4.195,
+        "server@1": 0.7960199004975125,
+        "p50_ms": 4.29,
         "p95_ms": 8.98,
         "top1@50%cov": 1.0
       },
       "tooljev-encoder-hier": {
-        "n": 250,
-        "top1": 0.684,
-        "recall@5": 0.976,
-        "server@1": 0.684,
-        "p50_ms": 54.79,
-        "p95_ms": 171.57,
-        "shortlist_hit": 0.948,
-        "shortlist_size": 1.796,
-        "top1@50%cov": 0.888
+        "n": 201,
+        "top1": 0.6666666666666666,
+        "recall@5": 0.9800995024875622,
+        "server@1": 0.6666666666666666,
+        "p50_ms": 54.65,
+        "p95_ms": 240.91,
+        "shortlist_hit": 0.945273631840796,
+        "shortlist_size": 1.7761194029850746,
+        "top1@50%cov": 0.88
       },
       "tooljev-encoder-rerank": {
         "n": 150,
@@ -274,23 +274,23 @@
         "top1@50%cov": 0.8933333333333333
       },
       "tooljev-encoder": {
-        "n": 250,
-        "top1": 0.792,
+        "n": 201,
+        "top1": 0.7960199004975125,
         "recall@5": 1.0,
-        "server@1": 0.792,
-        "p50_ms": 28.035,
-        "p95_ms": 77.0,
-        "shortlist_hit": 0.948,
-        "shortlist_size": 1.804,
-        "top1@50%cov": 0.944
+        "server@1": 0.7960199004975125,
+        "p50_ms": 27.55,
+        "p95_ms": 78.06,
+        "shortlist_hit": 0.9502487562189055,
+        "shortlist_size": 1.7412935323383085,
+        "top1@50%cov": 0.95
       },
       "hybrid-bge": {
-        "n": 250,
-        "top1": 0.916,
+        "n": 201,
+        "top1": 0.9154228855721394,
         "recall@5": 1.0,
-        "server@1": 0.916,
-        "p50_ms": 8.16,
-        "p95_ms": 9.28,
+        "server@1": 0.9154228855721394,
+        "p50_ms": 8.19,
+        "p95_ms": 9.6,
         "top1@50%cov": 1.0
       },
       "tooljev-hosted-fit": {
@@ -319,14 +319,14 @@
   },
   "abstention": {
     "MCPToolBench++ (leave-category-out)": {
-      "bm25": 0.7509332891539651,
-      "dense-minilm": 0.9126629114203667,
-      "dense-mpnet": 0.915293792798763,
-      "hybrid-rrf": 0.7687210072895958,
-      "tooljev-encoder-hier": 0.8139893969516236,
-      "tooljev-encoder-rerank": 0.7123777777777778,
-      "tooljev-encoder": 0.7212038877844047,
-      "hybrid-bge": 0.8033244974596864,
+      "bm25": 0.7719778385955544,
+      "dense-minilm": 0.9059586587455221,
+      "dense-mpnet": 0.9067819237701088,
+      "hybrid-rrf": 0.7679282646908306,
+      "tooljev-encoder-hier": 0.7849609505373473,
+      "tooljev-encoder-rerank": 0.6962727272727273,
+      "tooljev-encoder": 0.6881939345393053,
+      "hybrid-bge": 0.8015486282624658,
       "tooljev-hosted-fit": 0.8975,
       "tooljev-hosted-rerank": 0.8936018957345971
     },
@@ -343,103 +343,93 @@
       "tooljev-hosted-rerank": 0.7242530556813037
     },
     "When2Call": {
-      "bm25": 0.627944,
-      "dense-minilm": 0.7354,
-      "dense-mpnet": 0.725512,
-      "hybrid-rrf": 0.534368,
-      "tooljev-encoder-hier": 0.868768,
-      "tooljev-encoder-rerank": 0.9012888888888889,
-      "tooljev-encoder": 0.883528,
-      "hybrid-bge": 0.531328,
+      "bm25": 0.6111629353233831,
+      "dense-minilm": 0.7387700918484501,
+      "dense-mpnet": 0.7246340413318025,
+      "hybrid-rrf": 0.5341920206659012,
+      "tooljev-encoder-hier": 0.8756577688480673,
+      "tooljev-encoder-rerank": 0.9085964912280702,
+      "tooljev-encoder": 0.8900330080367393,
+      "hybrid-bge": 0.5336418867202449,
       "tooljev-hosted-fit": 0.9665625,
       "tooljev-hosted-rerank": 0.9416586538461539
     }
   },
   "transfer": {
     "bm25 @ fit on When2Call @90% TPR": {
-      "threshold": 0.9055623793287478,
-      "mcptoolbench keep": 0.9582504970178927,
-      "mcptoolbench-lso abstain": 0.050000000000000044,
+      "threshold": 1.0458106928032722,
+      "mcptoolbench keep": 0.9715639810426541,
+      "mcptoolbench-lso abstain": 0.03755868544600938,
       "livemcpbench keep": 1.0,
-      "livemcpbench-lso abstain": 0.0,
-      "bfcl-irrelevance abstain": 0.5916666666666667
+      "livemcpbench-lso abstain": 0.0
     },
     "dense-minilm @ fit on When2Call @90% TPR": {
       "threshold": 0.190246120095253,
-      "mcptoolbench keep": 0.950960901259112,
-      "mcptoolbench-lso abstain": 0.5933333333333333,
+      "mcptoolbench keep": 0.9383886255924171,
+      "mcptoolbench-lso abstain": 0.5868544600938967,
       "livemcpbench keep": 0.9787234042553191,
-      "livemcpbench-lso abstain": 0.04255319148936165,
-      "bfcl-irrelevance abstain": 0.4833333333333333
+      "livemcpbench-lso abstain": 0.04255319148936165
     },
     "dense-mpnet @ fit on When2Call @90% TPR": {
       "threshold": 0.18809552490711212,
-      "mcptoolbench keep": 0.9688535453943009,
-      "mcptoolbench-lso abstain": 0.36,
+      "mcptoolbench keep": 0.9383886255924171,
+      "mcptoolbench-lso abstain": 0.33333333333333337,
       "livemcpbench keep": 0.9787234042553191,
-      "livemcpbench-lso abstain": 0.06382978723404253,
-      "bfcl-irrelevance abstain": 0.4916666666666667
+      "livemcpbench-lso abstain": 0.06382978723404253
     },
     "hybrid-rrf @ fit on When2Call @90% TPR": {
       "threshold": 0.03252247488101534,
-      "mcptoolbench keep": 0.6699801192842942,
-      "mcptoolbench-lso abstain": 0.8233333333333334,
+      "mcptoolbench keep": 0.7014218009478673,
+      "mcptoolbench-lso abstain": 0.7981220657276995,
       "livemcpbench keep": 0.2765957446808511,
-      "livemcpbench-lso abstain": 0.8297872340425532,
-      "bfcl-irrelevance abstain": 0.0
+      "livemcpbench-lso abstain": 0.8297872340425532
     },
     "tooljev-encoder-hier @ fit on When2Call @90% TPR": {
-      "threshold": 0.032,
-      "mcptoolbench keep": 0.9807819748177601,
-      "mcptoolbench-lso abstain": 0.06333333333333335,
+      "threshold": 0.049,
+      "mcptoolbench keep": 0.957345971563981,
+      "mcptoolbench-lso abstain": 0.15962441314553988,
       "livemcpbench keep": 0.9787234042553191,
-      "livemcpbench-lso abstain": 0.021276595744680882,
-      "bfcl-irrelevance abstain": 0.6541666666666667
+      "livemcpbench-lso abstain": 0.021276595744680882
     },
     "tooljev-encoder-hier @ default 0.5": {
       "threshold": 0.5,
-      "mcptoolbench keep": 0.8727634194831014,
-      "mcptoolbench-lso abstain": 0.42666666666666664,
+      "mcptoolbench keep": 0.8341232227488151,
+      "mcptoolbench-lso abstain": 0.4225352112676056,
       "livemcpbench keep": 0.3723404255319149,
-      "livemcpbench-lso abstain": 0.7021276595744681,
-      "bfcl-irrelevance abstain": 0.7833333333333333
+      "livemcpbench-lso abstain": 0.7021276595744681
     },
     "tooljev-encoder-rerank @ fit on When2Call @90% TPR": {
       "threshold": 0.014,
       "mcptoolbench keep": 0.9866666666666667,
-      "mcptoolbench-lso abstain": 0.10666666666666669,
+      "mcptoolbench-lso abstain": 0.09090909090909094,
       "livemcpbench keep": 0.8936170212765957,
-      "livemcpbench-lso abstain": 0.12765957446808507,
-      "bfcl-irrelevance abstain": 0.6733333333333333
+      "livemcpbench-lso abstain": 0.12765957446808507
     },
     "tooljev-encoder-rerank @ default 0.5": {
       "threshold": 0.5,
       "mcptoolbench keep": 0.6533333333333333,
-      "mcptoolbench-lso abstain": 0.62,
+      "mcptoolbench-lso abstain": 0.6,
       "livemcpbench keep": 0.5531914893617021,
-      "livemcpbench-lso abstain": 0.5851063829787234,
-      "bfcl-irrelevance abstain": 0.8733333333333333
+      "livemcpbench-lso abstain": 0.5851063829787234
     },
     "tooljev-encoder @ fit on When2Call @90% TPR": {
-      "threshold": 0.009,
-      "mcptoolbench keep": 0.9900596421471173,
-      "mcptoolbench-lso abstain": 0.07666666666666666,
-      "livemcpbench keep": 0.925531914893617,
-      "livemcpbench-lso abstain": 0.08510638297872342,
-      "bfcl-irrelevance abstain": 0.6333333333333333
+      "threshold": 0.014,
+      "mcptoolbench keep": 0.985781990521327,
+      "mcptoolbench-lso abstain": 0.08920187793427226,
+      "livemcpbench keep": 0.8936170212765957,
+      "livemcpbench-lso abstain": 0.12765957446808507
     },
     "tooljev-encoder @ default 0.5": {
       "threshold": 0.5,
-      "mcptoolbench keep": 0.6640159045725647,
-      "mcptoolbench-lso abstain": 0.61,
+      "mcptoolbench keep": 0.6492890995260664,
+      "mcptoolbench-lso abstain": 0.5915492957746479,
       "livemcpbench keep": 0.5531914893617021,
-      "livemcpbench-lso abstain": 0.5851063829787234,
-      "bfcl-irrelevance abstain": 0.8583333333333334
+      "livemcpbench-lso abstain": 0.5851063829787234
     },
     "hybrid-bge @ fit on When2Call @90% TPR": {
       "threshold": 0.04891591750396616,
-      "mcptoolbench keep": 0.7011265738899933,
-      "mcptoolbench-lso abstain": 0.8733333333333333,
+      "mcptoolbench keep": 0.7014218009478673,
+      "mcptoolbench-lso abstain": 0.8732394366197183,
       "livemcpbench keep": 0.32978723404255317,
       "livemcpbench-lso abstain": 0.7978723404255319
     },

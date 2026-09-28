@@ -12,20 +12,20 @@
 
 ## Results
 
-I benchmarked toolJev on MCPToolBench++, LiveMCPBench, When2Call, BFCL and live
-Claude Haiku agents. Several results went against my first design, and the
-design changed to match.
+I benchmarked toolJev with hosted [Jev](https://typesafe.ai) on MCPToolBench++,
+LiveMCPBench, When2Call and live Claude Haiku agents. Several results went
+against my first design, and the design changed to match.
 
 <p align="center"><img src="docs/results_card.png" alt="results summary" width="100%"></p>
 
-| Question | Result | Takeaway |
+| Question | Result (hosted Jev) | Takeaway |
 |---|---|---|
-| Can a decision model pick the right tool? | Jev alone: **18%** right first. BM25 + embeddings: **70%** (MCPToolBench++, 1,509 queries) | Retrieval picks the tools; Jev judges them |
-| Does it know when no tool fits? | Near-misses: Jev **0.88** AUROC vs 0.74 for embeddings. Out-of-domain: embeddings **0.91** vs 0.72 | The right signal depends on the kind of miss |
-| Is Jev's confidence honest? | Its surest **29%** of 400 tickets were **98.3%** right. Claude Haiku on all of them: 99.3% | Safe to act on confident answers in code |
-| Is it worth it at 612 tools? | Same task success as Claude Code's own tool search (0.81), **61% fewer** input tokens, **23% cheaper**, but slower | Pays off at scale |
-| Is it worth it at 87 tools? | Direct tool calling was more accurate (0.94 vs 0.89) and cheaper | Don't bother below ~100 tools |
-| Bulk work: route 400 tickets | **3.6 to 5.2x cheaper** than the LLM doing each one, but 12 to 25 points less accurate with the local model | Use confidence gating, not blind automation |
+| Does it pick the right tool? | Right tool ranked first: **83%** on MCPToolBench++, **54%** on LiveMCPBench, **99%** on When2Call. Retrieval alone: 73%, 40%, 92%. Jev alone, with no retrieval: 18% | Retrieval shortlists, Jev picks |
+| Does it know when no tool fits? | AUROC **0.94** on When2Call near-misses (embeddings 0.74), **0.72** on LiveMCPBench (0.68), 0.89 on out-of-domain MCPToolBench++ (0.91) | The one signal that handles both kinds of miss |
+| Can Jev make per-item decisions? | **98.8%** on 400 support tickets, alone. The 97% it was ≥ 0.9 sure of: **99.7%**. Claude Haiku doing every ticket: 99.3% | Confident answers are safe to act on in code |
+| Agent routing those 400 tickets | **98.8% for $0.063**, against 99.3% for $0.332 with Haiku routing each ticket itself | **5.3x cheaper** at about the same accuracy |
+| Agent with 612 tools | Right tool called in **89%** of tasks vs 81% for Claude Code's own tool search, with **77% fewer** input tokens and **28% lower** cost, but slower (34 s vs 18 s) | Pays off at scale |
+| Agent with 87 tools | Direct tool calling was more accurate (0.94 vs 0.89) and cheaper (local backend) | Don't bother below ~100 tools |
 
 <p align="center">
 <img src="docs/gating.png" alt="Jev confidence vs accuracy" width="49%">
@@ -34,9 +34,10 @@ design changed to match.
 
 Sample sizes, methods and every caveat are in **[bench/RESULTS.md](bench/RESULTS.md)**.
 The short version of the caveats:
-- the agent runs use 1 to 2 reps per setup
-- upstream servers are mocks
-- most runs use [nanojev](https://github.com/VishiATChoudhary/nanojev), a local stand-in for Jev, because the hosted Jev credits ran out after an 80-query pilot
+- hosted routing numbers use up to 200 answerable + 200 unanswerable queries per benchmark
+- the agent runs use 1 to 2 reps and 36 tasks per setup; at that size 89% vs 81% is three tasks
+- upstream servers are mocks built from each benchmark's tool schemas
+- the 87-tool agent run and the GIF use [nanojev](https://github.com/VishiATChoudhary/nanojev), a local stand-in for Jev that is much less accurate
 
 ## What it is
 
@@ -171,16 +172,21 @@ this; the tool descriptions do.
 ### 6. When to use it, and when not
 
 **Use it when:**
-- You connect **hundreds of tools**. At 612 tools it cut input tokens by 61%
-  against Claude Code's own tool search, at the same success rate.
+- You connect **hundreds of tools**. At 612 tools it cut input tokens by 77%
+  and cost by 28% against Claude Code's own tool search (right tool 89% vs
+  81% lenient, 72% vs 75% strict).
 - Your agent does **the same judgement over many items**: triage, routing,
-  filtering, labelling. Gate on Jev's confidence and let the LLM handle the rest.
+  filtering, labelling. With hosted Jev, 400 tickets were routed 5.3x cheaper
+  than by the LLM, at 98.8% vs 99.3%. Gate on Jev's confidence and let the LLM
+  take the unsure ones.
 
 **Skip it when:**
 - You have **fewer than about 100 tools**. Direct tool calling was more
   accurate and cheaper at 87 tools.
-- You need **every item right** and cost doesn't matter. The LLM alone was more
-  accurate on triage.
+- You need **every item right** and cost doesn't matter. The LLM alone was
+  still half a point more accurate on triage.
+- **Latency** matters more than tokens. Each search is a hosted round trip
+  (about 285 ms), and Code Mode adds a turn.
 
 ## How it works
 
@@ -247,7 +253,8 @@ sandbox code can do. Use per-server `allow = [...]` to expose less.
 
 - **Free-text arguments.** Jev cannot write them; the agent writes them in code.
 - **An `llm_query` fallback** inside the sandbox.
-- **Hosted Jev beyond an 80-query pilot.** The API credits ran out mid-benchmark.
+- **Hosted Jev on the full routing sets and the 87-tool agent task.** It ran
+  on a 200 + 200 sample per benchmark.
 - **One combined abstention score.** Fusing embedding similarity with Jev's fit
   is not done yet; a simple fitted combination did not beat embeddings alone.
 
@@ -258,6 +265,7 @@ uv pip install -e ".[local,retrieval,dev,bench]"
 uv run pytest -m "not slow"                                      # offline: fake decider, in-process servers
 uv run pytest -m slow                                            # real nanojev
 uv run python -m bench.run && uv run python -m bench.report      # routing + abstention benchmarks
+TYPESAFE_API_KEY=... bash bench/hosted.sh                        # every hosted-Jev run, resumable
 uv run python -m bench.agent.run_agent --task triage --n 40      # agent in the loop (uses `claude -p`)
 ```
 

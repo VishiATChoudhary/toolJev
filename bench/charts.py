@@ -33,17 +33,19 @@ def _style(ax) -> None:
 
 
 def abstention() -> None:
-    s = json.loads((RESULTS / "summary.json").read_text())["abstention"]
-    # Hosted Jev ran out of API credits after an 80-query MCPToolBench++ pilot, so it is
-    # reported in the text rather than drawn beside full-benchmark bars.
-    series = [("dense embedding, max cosine (MiniLM)", "dense-minilm", ORANGE),
-              ("toolJev per-tool Nouls, local nanojev", "tooljev-encoder", BLUE)]
+    # Scored on the cases hosted Jev ran (200 answerable + 200 not, per benchmark), so
+    # every bar in a group is measured on the same queries.
+    f = RESULTS / "summary_matched_tooljev-hosted-rerank.json"
+    s = json.loads(f.read_text())["abstention"]
+    series = [("hosted Jev (toolJev default)", "tooljev-hosted-rerank", BLUE),
+              ("local nanojev", "tooljev-encoder", ORANGE),
+              ("dense embedding, max cosine (MiniLM)", "dense-minilm", AQUA)]
     benches = list(s)
     fig, ax = plt.subplots(figsize=(8, 4.2), facecolor=SURFACE)
     _style(ax)
-    width = 0.26
+    width = 0.24
     for i, (label, key, color) in enumerate(series):
-        xs = [j + (i - 0.5) * (width + 0.02) for j in range(len(benches))]
+        xs = [j + (i - 1) * (width + 0.02) for j in range(len(benches))]
         vals = [s[b].get(key, float("nan")) for b in benches]
         bars = ax.bar(xs, vals, width, color=color, label=label, edgecolor=SURFACE, linewidth=2)
         for b, v in zip(bars, vals):
@@ -51,12 +53,12 @@ def abstention() -> None:
                 ax.text(b.get_x() + b.get_width() / 2, v + 0.01, f"{v:.2f}", ha="center", va="bottom",
                         fontsize=8, color=INK2)
     ax.axhline(0.5, color=INK2, linewidth=1, linestyle=(0, (3, 3)))
-    ax.text(-0.45, 0.505, "chance", fontsize=8, color=INK2, va="bottom")
+    ax.text(len(benches) - 0.5, 0.505, "chance", fontsize=8, color=INK2, va="bottom", ha="right")
     ax.set_xticks(range(len(benches)), [b.replace(" (", "\n(") for b in benches], color=INK)
-    ax.set_ylim(0.4, 1.0)
+    ax.set_ylim(0.4, 1.05)
     ax.set_ylabel("AUROC, answerable vs not", color=INK)
     ax.set_title("Which signal knows when no tool fits?", loc="left", color=INK, fontsize=12)
-    ax.legend(frameon=False, fontsize=9, loc="upper left", ncol=2)
+    ax.legend(frameon=False, fontsize=9, loc="upper left", ncol=3)
     fig.tight_layout()
     fig.savefig(OUT / "abstention.png", dpi=160)
 
@@ -65,7 +67,7 @@ def gating() -> None:
     fig, ax = plt.subplots(figsize=(8, 4.2), facecolor=SURFACE)
     _style(ax)
     llm = None
-    for backend, label, color in [("nanojev", "local nanojev", BLUE)]:
+    for backend, label, color in [("hosted", "hosted Jev", BLUE), ("nanojev", "local nanojev", ORANGE)]:
         f = RESULTS / f"gating_triage400_{backend}.json"
         if not f.exists():
             continue
@@ -75,17 +77,18 @@ def gating() -> None:
         xs = [r["jev_coverage"] * 100 for r in rows]
         ys = [r["jev_accuracy_on_kept"] * 100 for r in rows]
         ax.plot(xs, ys, color=color, linewidth=2, marker="o", markersize=5, label=label)
-        ax.annotate(f"{label}: {ys[0]:.0f}% with no gate", (xs[0], ys[0]), textcoords="offset points",
+        ax.annotate(f"{label}: {ys[0] + 1e-9:.1f}% with no gate", (xs[0], ys[0]), textcoords="offset points",
                     xytext=(8, -4), ha="left", va="top", fontsize=8, color=INK2)
     if llm is not None:
         ax.axhline(llm * 100, color=INK2, linewidth=1, linestyle=(0, (3, 3)))
-        ax.text(100, llm * 100 + 0.5, f"Claude Haiku routing every ticket itself: {llm * 100:.1f}%",
+        ax.text(100, llm * 100 + 0.5, f"Claude Haiku routing every ticket itself: {llm * 100 + 1e-9:.1f}%",
                 fontsize=8, color=INK2, ha="left", va="bottom")
     ax.set_xlim(102, 0)  # read left to right as "stricter confidence gate"
     ax.set_xlabel("share of 400 tickets Jev handles (confidence gate tightens to the right)", color=INK)
     ax.set_ylabel("accuracy on the tickets Jev handles (%)", color=INK)
-    ax.set_title("Jev's confidence tracks its accuracy (local nanojev, 400 banking77 tickets)",
+    ax.set_title("Routing 400 banking77 tickets: Jev alone, gated by its own confidence",
                  loc="left", color=INK, fontsize=12)
+    ax.legend(frameon=False, fontsize=9, loc="lower right")
     fig.tight_layout()
     fig.savefig(OUT / "gating.png", dpi=160)
 
