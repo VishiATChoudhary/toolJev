@@ -4,6 +4,9 @@
 
 ### Code Mode for MCP, where the sub-model is a decision model, not an LLM.
 
+**Your agent doesn't need an LLM for every decision.**<br>
+612 tools: **77% fewer tokens**. 400 tickets: **5.3x cheaper, 98.8% accurate**.
+
 [![ci](https://github.com/VishiATChoudhary/toolJev/actions/workflows/ci.yml/badge.svg)](https://github.com/VishiATChoudhary/toolJev/actions/workflows/ci.yml)
 [![python](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
